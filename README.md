@@ -11,7 +11,7 @@ If you have any issue when using the API, please add a new issue here.
 Pull requests are welcome for API documentation.
 
 
-## How to run/build 
+## How to run/build the documentation locally
 
 To run locally:
 
