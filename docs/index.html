@@ -1,0 +1,852 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>API Reference</title>
+
+    <style>
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight, .highlight .w {
+  color: #f8f8f2;
+  background-color: #272822;
+}
+.highlight .err {
+  color: #272822;
+  background-color: #f92672;
+}
+.highlight .c, .highlight .cd, .highlight .cm, .highlight .c1, .highlight .cs {
+  color: #75715e;
+}
+.highlight .cp {
+  color: #f4bf75;
+}
+.highlight .nt {
+  color: #f4bf75;
+}
+.highlight .o, .highlight .ow {
+  color: #f8f8f2;
+}
+.highlight .p, .highlight .pi {
+  color: #f8f8f2;
+}
+.highlight .gi {
+  color: #a6e22e;
+}
+.highlight .gd {
+  color: #f92672;
+}
+.highlight .gh {
+  color: #66d9ef;
+  background-color: #272822;
+  font-weight: bold;
+}
+.highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+  color: #ae81ff;
+}
+.highlight .kc {
+  color: #fd971f;
+}
+.highlight .kt {
+  color: #fd971f;
+}
+.highlight .kd {
+  color: #fd971f;
+}
+.highlight .s, .highlight .sb, .highlight .sc, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+  color: #a6e22e;
+}
+.highlight .sr {
+  color: #a1efe4;
+}
+.highlight .si {
+  color: #cc6633;
+}
+.highlight .se {
+  color: #cc6633;
+}
+.highlight .nn {
+  color: #f4bf75;
+}
+.highlight .nc {
+  color: #f4bf75;
+}
+.highlight .no {
+  color: #f4bf75;
+}
+.highlight .na {
+  color: #66d9ef;
+}
+.highlight .m, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mb, .highlight .mx {
+  color: #a6e22e;
+}
+.highlight .ss {
+  color: #a6e22e;
+}
+    </style>
+    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all.js"></script>
+  </head>
+
+  <body class="index" data-languages="[&quot;javascript&quot;]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" alt="Navbar" />
+      </span>
+    </a>
+    <div class="tocify-wrapper">
+      <img src="images/logo.png" alt="Logo" />
+        <div class="lang-selector">
+              <a href="#" data-language-name="javascript">javascript</a>
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <div id="toc">
+      </div>
+        <ul class="toc-footer">
+            <li><a href='https://invoicing.services'>Sign Up for a Developer Key</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id="introduction">Introduction</h1>
+
+<p>Welcome to <strong>invoicing.services</strong> API documentation! </p>
+
+<p>You can use this API to create and store invoice PDF files online and get access from anywhere. </p>
+
+<p>When a new invoice is created, you will get a link to your invoice PDF file like  <a href="https://s3-us-west-2.amazonaws.com/files.invoicing.services/9344079c-d891-404d-8997-d47cbbf3f297/dummies/2016/12/63226081-0eb4-4046-ab27-166261f70dc6.pdf">https://s3-us-west-2.amazonaws.com/files.invoicing.services/9344079c-d891-404d-8997-d47cbbf3f297/dummies/2016/12/63226081-0eb4-4046-ab27-166261f70dc6.pdf</a>. </p>
+
+<p>Use this link to save or share your invoice.</p>
+
+<aside class="success">
+Invoice files will be available for at least 5 years.
+</aside>
+
+<h1 id="api-endpoint">API endpoint</h1>
+
+<p>To call <strong>invoicing.services</strong> API methods, use <strong>https://api.incoicing.services</strong> API endpoint .</p>
+
+<p>For example, to create a new Invoice, you call the metod <code class="prettyprint">https://api.invoicing.services/invoice/add</code>.</p>
+
+<h1 id="authentication">Authentication</h1>
+<pre class="highlight javascript"><code><span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+    <span class="na">method</span><span class="p">:</span> <span class="s1">'POST'</span><span class="p">,</span>
+    <span class="p">...</span>
+    <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s1">'Content-Type'</span><span class="p">:</span> <span class="s1">'application/json'</span><span class="p">,</span>
+      <span class="s1">'X-Api-Key'</span><span class="p">:</span> <span class="s1">'my-api-key'</span>
+    <span class="p">},</span>
+    <span class="p">...</span>
+  <span class="p">});</span>
+</code></pre>
+<p><strong>invoicing.services</strong> uses API keys to allow access to the API methods. You can get an API key at our <a href="https://invoicing.services">website</a>.</p>
+
+<p>We expect for the API key to be included in all API requests to the server in a header that looks like the following:</p>
+
+<p><code class="prettyprint">&#39;X-Api-Key&#39;: &#39;my-api-key&#39;</code></p>
+
+<aside class="notice">
+You must replace <code>my-api-key</code> with your personal API key.
+</aside>
+
+<h1 id="passing-parameters">Passing parameters</h1>
+
+<p>Method call parameters must be passed in the Body part of the request message using <a href="https://en.wikipedia.org/wiki/JSON">JSON</a> format.</p>
+
+<p>The <code class="prettyprint">Content-Type</code> header attribute must be set to <code class="prettyprint">application/json</code>.</p>
+<pre class="highlight javascript"><code>
+<span class="c1">// How to set dates and numbers.</span>
+
+<span class="p">{</span>
+
+    <span class="p">...</span>
+
+    <span class="s2">"date"</span> <span class="p">:</span> <span class="s2">"1482932562"</span>
+
+    <span class="p">...</span>
+
+    <span class="s2">"total"</span> <span class="p">:</span> <span class="mf">19.99</span>
+
+    <span class="p">...</span>
+
+    <span class="s2">"countryCode"</span> <span class="p">:</span> <span class="s2">"FR"</span>
+
+    <span class="p">...</span>
+
+<span class="p">}</span>
+</code></pre>
+<h3 id="invoice-dates-format">Invoice Dates Format</h3>
+
+<p>When setting dates, use <a href="https://en.wikipedia.org/wiki/Unix_time">Unix time format</a>. </p>
+
+<p>For example, <code class="prettyprint">1482932562</code> date value translates to <code class="prettyprint">Wednesday, 28-Dec-16 13:42:42 UTC</code>.</p>
+
+<h3 id="invoice-numbers-format">Invoice Numbers Format</h3>
+
+<p>Invoice numbers must use the dot &ldquo;.&rdquo; symbol as the decimal mark (f.ex. 20.99). This is due to <a href="http://www.json.org/">JSON format</a> requirements.</p>
+
+<p>If you need to display a diferent format (f.ex. 20,99) please check Invoice Country Code parameter.</p>
+
+<h3 id="invoice-country-code">Invoice Country Code</h3>
+
+<p>Invoice country code (f.ex. <code class="prettyprint">US</code>) is used to format currency values and also to get country related statistics. </p>
+
+<p>An example.</p>
+
+<p>You may need to use the EUR currency code and display values using the French format (f.ex. 24,99 EUR). In that case you must set <code class="prettyprint">countryCode</code> to <code class="prettyprint">FR</code> value.</p>
+
+<h1 id="invoices">Invoices</h1>
+
+<h2 id="create-a-new-invoice">Create a new invoice.</h2>
+<pre class="highlight javascript"><code><span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+    <span class="na">method</span><span class="p">:</span> <span class="s1">'POST'</span><span class="p">,</span>
+    <span class="na">url</span><span class="p">:</span> <span class="s1">'https://api.invoicing.services/invoice/add'</span><span class="p">,</span>
+    <span class="na">data</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">invoiceJson</span><span class="p">),</span>
+    <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s1">'Content-Type'</span><span class="p">:</span> <span class="s1">'application/json'</span><span class="p">,</span>
+      <span class="s1">'X-Api-Key'</span><span class="p">:</span> <span class="s1">'ExV0d92KzQ8QgsTVnevddpbB8cUaAfPs7ntVF8g0'</span>
+    <span class="p">},</span>
+    <span class="na">dataType</span><span class="p">:</span> <span class="s1">'json'</span><span class="p">,</span>
+    <span class="na">success</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span> 
+    <span class="p">},</span>
+    <span class="na">error</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">xhr</span><span class="p">,</span> <span class="nx">textStatus</span><span class="p">,</span> <span class="nx">errorThrown</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">xhr</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"invoiceId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016_12_1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"invoiceDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1482945673350"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"invoiceFileURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://.../63226081-0eb4-4046-ab27-166261f70dc6.pdf"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Use this method to create a new invoice.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST https://api.invoicing.services/invoice/add</code></p>
+
+<h3 id="invoice-ids">Invoice Ids</h3>
+
+<p>If you want your invoice id to be automatically generated by the system, do not include the <code class="prettyprint">id</code> parameter on the request.</p>
+
+<aside class="notice">
+Automatic invoice ids will be formatted as [year_month_number] where the last number is initialized every month and incremented automatically (f.ex. 2017_01_1, 2017_01_2, &hellip;, 2017_02_1). 
+</aside>
+
+<h3 id="dummy-invoices">Dummy Invoices</h3>
+
+<p>To test how the API works you can use the <code class="prettyprint">dummy</code> parameter. If set to <code class="prettyprint">true</code>, your invoice will be saved on a separate folder and will not be counted.</p>
+
+<blockquote>
+<p>Invoice JSON example.</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"dummy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"currencyCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"countryCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="p">,</span><span class="w"> 
+    </span><span class="nt">"seller"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"seller id"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"seller name"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"line1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Address line 1"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"line2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Address line 2"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"line3"</span><span class="p">:</span><span class="w"> </span><span class="s2">"some notes"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"taxIds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FC"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"203/232/20202"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VA"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BEB75884746"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"buyer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buyer id"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buyer name"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"line1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Address line 1"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"line2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Address line 2"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"line3"</span><span class="p">:</span><span class="w"> </span><span class="s2">"some notes"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"product name 1"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"product 1 description"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"unitPrice"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"taxes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"taxRate"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"taxName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VAT"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="nt">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"itemSubTotalAmount"</span><span class="p">:</span><span class="w"> </span><span class="mf">2000.00</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"itemTotalAmount"</span><span class="p">:</span><span class="w"> </span><span class="mf">2400.00</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"product name 2"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"product 2 description"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"unitPrice"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"taxes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"taxRate"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"taxName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VAT"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="nt">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"itemSubTotalAmount"</span><span class="p">:</span><span class="w"> </span><span class="mf">40.00</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"itemTotalAmount"</span><span class="p">:</span><span class="w"> </span><span class="mf">44.00</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"totals"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"subTotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">2040.00</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"taxTotals"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"taxRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"taxName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VAT"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"taxTotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">400.00</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"taxRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"taxName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VAT"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"taxTotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.00</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">2444.00</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"notes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"line1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This is an invoice note."</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"line2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"You can add 3 lines of notes."</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"line3"</span><span class="p">:</span><span class="w"> </span><span class="s2">"That's all folks."</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"labels"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> 
+        </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INVOICE"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"sellerLabel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"From"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"SellerTaxIdsLabel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tax ID(s)"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"buyerLabel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"To"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"BuyerTaxIdsLabel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tax ID(s)"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"itemsListItem"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Item"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"itemsListPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Price"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"itemsListQty"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Qty"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"itemsListSubtotal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Subtotal"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"itemsListTotal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Total"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"subtotal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Subtotal"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Total"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="invoice-json-parameters">Invoice Json Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+<th>Notes</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>dummy</td>
+<td>boolean</td>
+<td>false</td>
+<td>If set to true, invoice is not counted.</td>
+<td>[optional]</td>
+</tr>
+<tr>
+<td>id</td>
+<td>string</td>
+<td></td>
+<td>Invoice Id.</td>
+<td>[optional]</td>
+</tr>
+<tr>
+<td>date</td>
+<td>timestamp</td>
+<td>current date</td>
+<td>Invoice date.</td>
+<td>[optional]</td>
+</tr>
+<tr>
+<td>currencyCode</td>
+<td>string</td>
+<td>USD</td>
+<td><a href="https://en.wikipedia.org/wiki/ISO_4217">currency ISO code</a></td>
+<td>[optional]</td>
+</tr>
+<tr>
+<td>countryCode</td>
+<td>string</td>
+<td>US</td>
+<td><a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">country ISO code</a></td>
+<td>[optional]</td>
+</tr>
+<tr>
+<td>seller</td>
+<td>array</td>
+<td></td>
+<td>Invoice actor (seller) attributes.</td>
+<td></td>
+</tr>
+<tr>
+<td>buyer</td>
+<td>array</td>
+<td></td>
+<td>Invoice actor (buyer) attributes.</td>
+<td></td>
+</tr>
+<tr>
+<td>items</td>
+<td>array</td>
+<td></td>
+<td>Items list.</td>
+<td></td>
+</tr>
+<tr>
+<td>totals</td>
+<td>array</td>
+<td></td>
+<td>Totals attributes.</td>
+<td></td>
+</tr>
+<tr>
+<td>notes</td>
+<td>array</td>
+<td></td>
+<td>Notes.</td>
+<td>[optional].</td>
+</tr>
+<tr>
+<td>labels</td>
+<td>array</td>
+<td></td>
+<td>Labels texts.</td>
+<td>[optional].</td>
+</tr>
+</tbody></table>
+
+<h3 id="actor-seller-buyer-parameters">Actor (seller/buyer) Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+<th>Notes</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>string</td>
+<td></td>
+<td>Actor (seller/buyer) id.</td>
+<td>[optional]</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td></td>
+<td>Name.</td>
+<td></td>
+</tr>
+<tr>
+<td>line1</td>
+<td>string</td>
+<td></td>
+<td>Used to describe seller/buyer.</td>
+<td>[optional]</td>
+</tr>
+<tr>
+<td>line2</td>
+<td>string</td>
+<td></td>
+<td>Additional info.</td>
+<td>[optional]</td>
+</tr>
+<tr>
+<td>line3</td>
+<td>string</td>
+<td></td>
+<td>Additional info.</td>
+<td>[optional]</td>
+</tr>
+<tr>
+<td>taxIds</td>
+<td>array</td>
+<td></td>
+<td>List of tax codes.</td>
+<td>[optional]</td>
+</tr>
+</tbody></table>
+
+<h3 id="actor-seller-buyer-tax-codes">Actor (seller/buyer) Tax codes</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>string</td>
+<td></td>
+<td>Tax name (f.ex. VA).</td>
+</tr>
+<tr>
+<td>value</td>
+<td>string</td>
+<td></td>
+<td>Tax Value (f.ex. BEB75884746).</td>
+</tr>
+</tbody></table>
+
+<h3 id="invoice-item">Invoice Item</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+<th>Notes</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>string</td>
+<td></td>
+<td>Product/Service name.</td>
+<td></td>
+</tr>
+<tr>
+<td>description</td>
+<td>string</td>
+<td></td>
+<td>Description.</td>
+<td>[optional]</td>
+</tr>
+<tr>
+<td>unitPrice</td>
+<td>number</td>
+<td></td>
+<td>Unit price.</td>
+<td></td>
+</tr>
+<tr>
+<td>taxes</td>
+<td>array</td>
+<td></td>
+<td>List of taxes for that item.</td>
+<td>[optional]</td>
+</tr>
+<tr>
+<td>quantity</td>
+<td>number</td>
+<td></td>
+<td>Quantity.</td>
+<td></td>
+</tr>
+<tr>
+<td>itemSubTotalAmount</td>
+<td>number</td>
+<td></td>
+<td>Item total before taxes.</td>
+<td></td>
+</tr>
+<tr>
+<td>itemTotalAmount</td>
+<td>number</td>
+<td></td>
+<td>Item total including all taxes.</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<h3 id="item-taxes">Item Taxes</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>taxRate</td>
+<td>number</td>
+<td></td>
+<td>tax rate (f.ex. 20).</td>
+</tr>
+<tr>
+<td>taxName</td>
+<td>string</td>
+<td></td>
+<td>tax name (f.ex. VAT).</td>
+</tr>
+</tbody></table>
+
+<h3 id="invoice-totals">Invoice Totals</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+<th>Notes</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>subtotal</td>
+<td>number</td>
+<td></td>
+<td>Invoice total without taxes.</td>
+<td>[optional]</td>
+</tr>
+<tr>
+<td>taxTotals</td>
+<td>array</td>
+<td></td>
+<td>Invoice total taxes list.</td>
+<td>[optional]</td>
+</tr>
+<tr>
+<td>total</td>
+<td>number</td>
+<td></td>
+<td>Invoice Total.</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<h3 id="invoice-total-taxes">Invoice Total Taxes</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>taxRate</td>
+<td>number</td>
+<td></td>
+<td>Tax rate.</td>
+</tr>
+<tr>
+<td>taxName</td>
+<td>string</td>
+<td></td>
+<td>Tax name.</td>
+</tr>
+<tr>
+<td>taxTotal</td>
+<td>number</td>
+<td></td>
+<td>Invoice related tax total.</td>
+</tr>
+</tbody></table>
+
+<h3 id="invoice-notes">Invoice Notes</h3>
+
+<p>Use invoice notes to add any extra text you want to include.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>line1</td>
+<td>string</td>
+<td></td>
+<td>First line.</td>
+</tr>
+<tr>
+<td>line2</td>
+<td>string</td>
+<td></td>
+<td>Second line.</td>
+</tr>
+<tr>
+<td>line3</td>
+<td>string</td>
+<td></td>
+<td>Third line.</td>
+</tr>
+</tbody></table>
+
+<h3 id="invoice-labels">Invoice Labels</h3>
+
+<p>Use these parameters to change the default labels texts.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>title</td>
+<td>string</td>
+<td>INVOICE</td>
+<td></td>
+</tr>
+<tr>
+<td>sellerLabel</td>
+<td>string</td>
+<td>From</td>
+<td></td>
+</tr>
+<tr>
+<td>SellerTaxIdsLabel</td>
+<td>string</td>
+<td>Tax ID(s)</td>
+<td></td>
+</tr>
+<tr>
+<td>buyerLabel</td>
+<td>string</td>
+<td>To</td>
+<td></td>
+</tr>
+<tr>
+<td>BuyerTaxIdsLabel</td>
+<td>string</td>
+<td>Tax ID(s)</td>
+<td></td>
+</tr>
+<tr>
+<td>itemsListItem</td>
+<td>string</td>
+<td>Item</td>
+<td></td>
+</tr>
+<tr>
+<td>itemsListPrice</td>
+<td>string</td>
+<td>Price</td>
+<td></td>
+</tr>
+<tr>
+<td>itemsListQty</td>
+<td>string</td>
+<td>Qty</td>
+<td></td>
+</tr>
+<tr>
+<td>itemsListSubtotal</td>
+<td>string</td>
+<td>Subtotal</td>
+<td></td>
+</tr>
+<tr>
+<td>itemsListTotal</td>
+<td>string</td>
+<td>Total</td>
+<td></td>
+</tr>
+<tr>
+<td>subtotal</td>
+<td>string</td>
+<td>Subtotal</td>
+<td></td>
+</tr>
+<tr>
+<td>total</td>
+<td>string</td>
+<td>Total</td>
+<td></td>
+</tr>
+</tbody></table>
+
+          <h1 id="error-codes">Error Codes</h1>
+
+<p>The invoicing.services API uses the following error codes:</p>
+
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>Bad Request &ndash; Check your request parameters.</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized &ndash; Check your API key</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden &ndash; The requested object is hidden for administrators only</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found &ndash; Your API key is valid but there is no related user on our servers.</td>
+</tr>
+<tr>
+<td>405</td>
+<td>Method Not Allowed &ndash; You tried to access with an invalid method</td>
+</tr>
+<tr>
+<td>406</td>
+<td>Not Acceptable &ndash; You requested a format that isn&rsquo;t json</td>
+</tr>
+<tr>
+<td>410</td>
+<td>Gone &ndash; The requested object has been removed</td>
+</tr>
+<tr>
+<td>418</td>
+<td>I&rsquo;m a teapot</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Too Many Requests &ndash; Slow down!</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error &ndash; We had a problem with our server. Try again later.</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable &ndash; We&rsquo;re temporarially offline for maintanance. Please try again later.</td>
+</tr>
+</tbody></table>
+
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="javascript">javascript</a>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>
