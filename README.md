@@ -2,6 +2,8 @@
 
 API documentation. Powered by [slate](https://github.com/lord/slate).
 
+You can browse the docs at [docs.invoicing.services](http://docs.invoicing.services)
+
 ## API Issues
 
 If you have any issue when using the API, please add a new issue here.
