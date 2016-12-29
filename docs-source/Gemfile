@@ -8,6 +8,4 @@ gem "middleman-sprockets", "~> 4.0.0"
 gem 'rouge', '~> 2.0.5'
 gem 'redcarpet', '~> 3.3.2'
 
-gem "middleman-favicon-maker"
-
-gem "wdm", "~> 0.1.0", :platforms => [:mswin, :mingw]
+gem "middleman-favicon-maker", "~> 4.0"
