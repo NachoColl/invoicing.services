@@ -122,7 +122,7 @@
 
 <p>You can use this API to create and store invoice PDF files online and get access from anywhere. </p>
 
-<p>When a new invoice is created, you will get a link to your invoice PDF file like  <a href="https://s3-us-west-2.amazonaws.com/files.invoicing.services/9344079c-d891-404d-8997-d47cbbf3f297/dummies/2016/12/63226081-0eb4-4046-ab27-166261f70dc6.pdf">https://s3-us-west-2.amazonaws.com/files.invoicing.services/9344079c-d891-404d-8997-d47cbbf3f297/dummies/2016/12/63226081-0eb4-4046-ab27-166261f70dc6.pdf</a>. </p>
+<p>When a new invoice is created, you will get a link to your invoice PDF file like  <a href="https://s3-us-west-2.amazonaws.com/files.invoicing.services/9bdbd202-b0e1-4d4a-913b-2f9eb1731ce7/dummies/2016/12/7cb0557e-bbd9-4625-84cf-76e7afec9d57.pdf">https://s3-us-west-2.amazonaws.com/files.invoicing.services/9bdbd202-b0e1-4d4a-913b-2f9eb1731ce7/dummies/2016/12/7cb0557e-bbd9-4625-84cf-76e7afec9d57.pdf</a>. </p>
 
 <p>Use this link to save or share your invoice.</p>
 
@@ -254,98 +254,97 @@ Automatic invoice ids will be formatted as [year_month_number] where the last nu
 <p>Invoice JSON example.</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="nt">"dummy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"currencyCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"countryCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="p">,</span><span class="w"> 
-    </span><span class="nt">"seller"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"seller id"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"seller name"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"line1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Address line 1"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"line2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Address line 2"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"line3"</span><span class="p">:</span><span class="w"> </span><span class="s2">"some notes"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"taxIds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-            </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FC"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"203/232/20202"</span><span class="w">
-            </span><span class="p">},</span><span class="w">
-            </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VA"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BEB75884746"</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-        </span><span class="p">]</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nt">"buyer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buyer id"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buyer name"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"line1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Address line 1"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"line2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Address line 2"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"line3"</span><span class="p">:</span><span class="w"> </span><span class="s2">"some notes"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nt">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+  </span><span class="nt">"currencyCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"countryCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"seller"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3338926K"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AXTIA TECHNOLOGIES"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"line1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"West City"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"buyer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rabbit 1988"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ACME Corporation"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"line1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Looney Tunes Street"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"line2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"El Coyote"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"taxIds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FC"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"203/232/20202"</span><span class="w">
+      </span><span class="p">}</span><span class="w">    
+    </span><span class="p">]</span><span class="w">
+
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ACME ARTIFICIAL ROCK"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Have hours of amusement pretending to be a rock with the ACME Artificial Rock."</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"unitPrice"</span><span class="p">:</span><span class="w"> </span><span class="mf">1000.10</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"taxes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"product name 1"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"product 1 description"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"unitPrice"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"taxes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-            </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"taxRate"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"taxName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VAT"</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-        </span><span class="p">],</span><span class="w">
-        </span><span class="nt">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"itemSubTotalAmount"</span><span class="p">:</span><span class="w"> </span><span class="mf">2000.00</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"itemTotalAmount"</span><span class="p">:</span><span class="w"> </span><span class="mf">2400.00</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"product name 2"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"product 2 description"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"unitPrice"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"taxes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-            </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"taxRate"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"taxName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VAT"</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-        </span><span class="p">],</span><span class="w">
-        </span><span class="nt">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"itemSubTotalAmount"</span><span class="p">:</span><span class="w"> </span><span class="mf">40.00</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"itemTotalAmount"</span><span class="p">:</span><span class="w"> </span><span class="mf">44.00</span><span class="w">
+          </span><span class="nt">"taxRate"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"taxName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VAT"</span><span class="w">
         </span><span class="p">}</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="nt">"totals"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"subTotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">2040.00</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"taxTotals"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-            </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"taxRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"taxName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VAT"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"taxTotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">400.00</span><span class="w">
-            </span><span class="p">},</span><span class="w">
-            </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"taxRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"taxName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VAT"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"taxTotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.00</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-        </span><span class="p">],</span><span class="w">
-        </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">2444.00</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"itemSubTotalAmount"</span><span class="p">:</span><span class="w"> </span><span class="mf">2000.20</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"itemTotalAmount"</span><span class="p">:</span><span class="w"> </span><span class="mf">2400.04</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="nt">"notes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"line1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This is an invoice note."</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"line2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"You can add 3 lines of notes."</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"line3"</span><span class="p">:</span><span class="w"> </span><span class="s2">"That's all folks."</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nt">"labels"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> 
-        </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INVOICE"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"sellerLabel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"From"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"SellerTaxIdsLabel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tax ID(s)"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"buyerLabel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"To"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"BuyerTaxIdsLabel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tax ID(s)"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"itemsListItem"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Item"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"itemsListPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Price"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"itemsListQty"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Qty"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"itemsListSubtotal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Subtotal"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"itemsListTotal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Total"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"subtotal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Subtotal"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Total"</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ACME ASPIRIN"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ACME is recognized worldwide as a leading producer of acetylsalicylic acid."</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"unitPrice"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"taxes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"taxRate"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"taxName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VAT"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"itemSubTotalAmount"</span><span class="p">:</span><span class="w"> </span><span class="mf">40.00</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"itemTotalAmount"</span><span class="p">:</span><span class="w"> </span><span class="mf">44.00</span><span class="w">
     </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"totals"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"subTotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">2040.20</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"taxTotals"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"taxRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"taxName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VAT"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"taxTotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">400.04</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"taxRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"taxName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VAT"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"taxTotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.00</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">2444.04</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"notes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"line1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The Complete Illustrated Catalog of ACME Products"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"line2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Payment 60 days after invoice date."</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"line3"</span><span class="p">:</span><span class="w"> </span><span class="s2">"That's all folks."</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"labels"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INVOICE #"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"sellerLabel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bill From:"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"SellerTaxIdsLabel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tax ID(s)"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"buyerLabel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bill To:"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"BuyerTaxIdsLabel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tax ID(s)"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"itemsListItem"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Item"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"itemsListPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Price"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"itemsListQty"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Qty"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"itemsListSubtotal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Subtotal"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"itemsListTotal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Total"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"subtotal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Subtotal"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Total"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"colors"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"color1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#2E2E2E"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"color2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#585858"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"color3"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#424242"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <h3 id="invoice-json-parameters">Invoice Json Parameters</h3>
@@ -435,6 +434,13 @@ Automatic invoice ids will be formatted as [year_month_number] where the last nu
 <td></td>
 <td>Labels texts.</td>
 <td>[optional].</td>
+</tr>
+<tr>
+<td>colors</td>
+<td>array</td>
+<td></td>
+<td>Invoice template colors.</td>
+<td>[optional]</td>
 </tr>
 </tbody></table>
 
@@ -714,13 +720,13 @@ Automatic invoice ids will be formatted as [year_month_number] where the last nu
 <tr>
 <td>title</td>
 <td>string</td>
-<td>INVOICE</td>
+<td>INVOICE #</td>
 <td></td>
 </tr>
 <tr>
 <td>sellerLabel</td>
 <td>string</td>
-<td>From</td>
+<td>Bill From</td>
 <td></td>
 </tr>
 <tr>
@@ -732,7 +738,7 @@ Automatic invoice ids will be formatted as [year_month_number] where the last nu
 <tr>
 <td>buyerLabel</td>
 <td>string</td>
-<td>To</td>
+<td>Bill To</td>
 <td></td>
 </tr>
 <tr>
@@ -782,6 +788,40 @@ Automatic invoice ids will be formatted as [year_month_number] where the last nu
 <td>string</td>
 <td>Total</td>
 <td></td>
+</tr>
+</tbody></table>
+
+<h3 id="invoice-colors">Invoice Colors</h3>
+
+<p>Use these parameters to change the default template colors. To check how the colors are used, we recommend that you create a <code class="prettyprint">dummy</code> invoice for testing.</p>
+
+<p>You can check for color values <a href="http://www.w3schools.com/colors/colors_picker.asp">here</a>.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>color1</td>
+<td>string</td>
+<td>#2E2E2E</td>
+<td>Template color.</td>
+</tr>
+<tr>
+<td>color2</td>
+<td>string</td>
+<td>#585858</td>
+<td>Template color.</td>
+</tr>
+<tr>
+<td>color3</td>
+<td>string</td>
+<td>&ldquo;#424242&rdquo;</td>
+<td>Template color.</td>
 </tr>
 </tbody></table>
 

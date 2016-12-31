@@ -19,7 +19,7 @@ Welcome to **invoicing.services** API documentation!
 
 You can use this API to create and store invoice PDF files online and get access from anywhere. 
 
-When a new invoice is created, you will get a link to your invoice PDF file like  [https://s3-us-west-2.amazonaws.com/files.invoicing.services/9344079c-d891-404d-8997-d47cbbf3f297/dummies/2016/12/63226081-0eb4-4046-ab27-166261f70dc6.pdf](https://s3-us-west-2.amazonaws.com/files.invoicing.services/9344079c-d891-404d-8997-d47cbbf3f297/dummies/2016/12/63226081-0eb4-4046-ab27-166261f70dc6.pdf). 
+When a new invoice is created, you will get a link to your invoice PDF file like  [https://s3-us-west-2.amazonaws.com/files.invoicing.services/9bdbd202-b0e1-4d4a-913b-2f9eb1731ce7/dummies/2016/12/7cb0557e-bbd9-4625-84cf-76e7afec9d57.pdf](https://s3-us-west-2.amazonaws.com/files.invoicing.services/9bdbd202-b0e1-4d4a-913b-2f9eb1731ce7/dummies/2016/12/7cb0557e-bbd9-4625-84cf-76e7afec9d57.pdf). 
 
 Use this link to save or share your invoice.
 
@@ -165,98 +165,97 @@ To test how the API works you can use the `dummy` parameter. If set to `true`, y
 
 ```json
 {
-	"dummy": "true",
-	"currencyCode": "USD",
-	"countryCode": "US", 
-	"seller": {
-		"id": "seller id",
-		"name": "seller name",
-		"line1": "Address line 1",
-		"line2": "Address line 2",
-		"line3": "some notes",
-		"taxIds": [
-			{
-			"name": "FC",
-			"value": "203/232/20202"
-			},
-			{
-			"name": "VA",
-			"value": "BEB75884746"
-			}
-		]
-	},
-	"buyer": {
-		"id": "buyer id",
-		"name": "buyer name",
-		"line1": "Address line 1",
-		"line2": "Address line 2",
-		"line3": "some notes"
-	},
-	"items": [
-		{
-		"name": "product name 1",
-		"description": "product 1 description",
-		"unitPrice": 1000,
-		"taxes": [
-			{
-			"taxRate": 20,
-			"taxName": "VAT"
-			}
-		],
-		"quantity": 2,
-		"itemSubTotalAmount": 2000.00,
-		"itemTotalAmount": 2400.00
-		},
-		{
-		"name": "product name 2",
-		"description": "product 2 description",
-		"unitPrice": 20,
-		"taxes": [
-			{
-			"taxRate": 10,
-			"taxName": "VAT"
-			}
-		],
-		"quantity": 2,
-		"itemSubTotalAmount": 40.00,
-		"itemTotalAmount": 44.00
-		}
-	],
-	"totals": {
-		"subTotal": 2040.00,
-		"taxTotals": [
-			{
-			"taxRate": "20",
-			"taxName": "VAT",
-			"taxTotal": 400.00
-			},
-			{
-			"taxRate": "10",
-			"taxName": "VAT",
-			"taxTotal": 4.00
-			}
-		],
-		"total": 2444.00
-	},
-	"notes": {
-		"line1": "This is an invoice note.",
-		"line2": "You can add 3 lines of notes.",
-		"line3": "That's all folks."
-	},
-	"labels": { 
-		"title": "INVOICE",
-		"sellerLabel": "From",
-		"SellerTaxIdsLabel": "Tax ID(s)",
-		"buyerLabel": "To",
-		"BuyerTaxIdsLabel": "Tax ID(s)",
-		"itemsListItem": "Item",
-		"itemsListPrice": "Price",
-		"itemsListQty": "Qty",
-		"itemsListSubtotal": "Subtotal",
-		"itemsListTotal": "Total",
-		"subtotal": "Subtotal",
-		"total": "Total"
-	}
+  "currencyCode": "USD",
+  "countryCode": "US",
+  "seller": {
+    "id": "3338926K",
+    "name": "AXTIA TECHNOLOGIES",
+    "line1": "West City"
+  },
+  "buyer": {
+    "id": "Rabbit 1988",
+    "name": "ACME Corporation",
+    "line1": "Looney Tunes Street",
+    "line2": "El Coyote",
+    "taxIds": [
+      {
+        "name": "FC",
+        "value": "203/232/20202"
+      }    
+    ]
+
+  },
+  "items": [
+    {
+      "name": "ACME ARTIFICIAL ROCK",
+      "description": "Have hours of amusement pretending to be a rock with the ACME Artificial Rock.",
+      "unitPrice": 1000.10,
+      "taxes": [
+        {
+          "taxRate": 20,
+          "taxName": "VAT"
+        }
+      ],
+      "quantity": 2,
+      "itemSubTotalAmount": 2000.20,
+      "itemTotalAmount": 2400.04
+    },
+    {
+      "name": "ACME ASPIRIN",
+      "description": "ACME is recognized worldwide as a leading producer of acetylsalicylic acid.",
+      "unitPrice": 20,
+      "taxes": [
+        {
+          "taxRate": 10,
+          "taxName": "VAT"
+        }
+      ],
+      "quantity": 2,
+      "itemSubTotalAmount": 40.00,
+      "itemTotalAmount": 44.00
+    }
+  ],
+  "totals": {
+    "subTotal": 2040.20,
+    "taxTotals": [
+      {
+        "taxRate": "20",
+        "taxName": "VAT",
+        "taxTotal": 400.04
+      },
+      {
+        "taxRate": "10",
+        "taxName": "VAT",
+        "taxTotal": 4.00
+      }
+    ],
+    "total": 2444.04
+  },
+  "notes": {
+    "line1": "The Complete Illustrated Catalog of ACME Products",
+    "line2": "Payment 60 days after invoice date.",
+    "line3": "That's all folks."
+  },
+  "labels": {
+    "title": "INVOICE #",
+    "sellerLabel": "Bill From:",
+    "SellerTaxIdsLabel": "Tax ID(s)",
+    "buyerLabel": "Bill To:",
+    "BuyerTaxIdsLabel": "Tax ID(s)",
+    "itemsListItem": "Item",
+    "itemsListPrice": "Price",
+    "itemsListQty": "Qty",
+    "itemsListSubtotal": "Subtotal",
+    "itemsListTotal": "Total",
+    "subtotal": "Subtotal",
+    "total": "Total"
+  },
+  "colors": {
+    "color1": "#2E2E2E",
+    "color2": "#585858",
+    "color3": "#424242"
+  }
+
 }
 ```
 
@@ -275,6 +274,7 @@ items | array | | Items list. |
 totals | array |  | Totals attributes.|
 notes | array | | Notes. | [optional].
 labels | array | | Labels texts. | [optional].
+colors | array | | Invoice template colors. | [optional]
 
 
 
@@ -347,10 +347,10 @@ Use these parameters to change the default labels texts.
 
 Parameter | Type | Default | Description 
 --------- | -------  | ----------- | ----------- 
-title | string | INVOICE | 
-sellerLabel | string | From | 
+title | string | INVOICE # | 
+sellerLabel | string | Bill From | 
 SellerTaxIdsLabel | string | Tax ID(s) | 
-buyerLabel | string | To | 
+buyerLabel | string | Bill To | 
 BuyerTaxIdsLabel | string | Tax ID(s) | 
 itemsListItem | string | Item | 
 itemsListPrice | string | Price | 
@@ -360,7 +360,17 @@ itemsListTotal | string | Total |
 subtotal | string | Subtotal | 
 total | string | Total | 
 
+### Invoice Colors
 
+Use these parameters to change the default template colors. To check how the colors are used, we recommend that you create a `dummy` invoice for testing.
+
+You can check for color values [here](http://www.w3schools.com/colors/colors_picker.asp).
+
+Parameter | Type | Default | Description 
+--------- | -------  | ----------- | ----------- 
+color1 | string | #2E2E2E | Template color.
+color2 | string | #585858 | Template color.
+color3 | string | "#424242" | Template color.
 
 
 
