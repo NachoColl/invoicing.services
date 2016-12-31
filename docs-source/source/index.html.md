@@ -6,6 +6,7 @@ language_tabs:
 
 toc_footers:
   - <a href='https://invoicing.services'>Sign Up for a Developer Key</a>
+  - Need help? click <a href='https://invoicing.services'>here</a>.
 
 includes:
   - errors
@@ -362,9 +363,9 @@ total | string | Total |
 
 ### Invoice Colors
 
-Use these parameters to change the default template colors. To check how the colors are used, we recommend that you create a `dummy` invoice for testing.
+Use these parameters to change the default template colors. 
 
-You can check for color values [here](http://www.w3schools.com/colors/colors_picker.asp).
+To check how the colors are used, we recommend that you create a `dummy` invoice for testing. You can check for color values [here](http://www.w3schools.com/colors/colors_picker.asp).
 
 Parameter | Type | Default | Description 
 --------- | -------  | ----------- | ----------- 
