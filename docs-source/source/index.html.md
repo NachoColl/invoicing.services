@@ -6,7 +6,7 @@ language_tabs:
 
 toc_footers:
   - <a href='https://invoicing.services'>Sign Up for a Developer Key</a>
-  - Need help? click <a href='https://invoicing.services'>here</a>.
+  - <a href='https://github.com/NachoColl/invoicing.services/issues' target="_blank">Need help? click here</a>
 
 includes:
   - errors
