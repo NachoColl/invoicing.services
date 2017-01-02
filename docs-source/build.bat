@@ -1,2 +1,2 @@
-bundle exec middleman build --build-dir=../docs
+bundle exec middleman build --no-clean --build-dir=../docs
 pause

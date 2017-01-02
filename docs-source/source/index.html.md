@@ -16,17 +16,45 @@ search: true
 
 # Introduction
 
+> "Hello world!" invoice definition example.
+
+```json
+{
+  "buyer": {
+    "name": "ACME Corporation"
+  },
+  "items": [
+    {
+      "name": "ACME ARTIFICIAL ROCK",
+      "unitPrice": 1000.10,
+      "quantity": 2,
+      "itemTotalAmount": 2000.20
+    }
+  ],
+  "totals": {
+    "total": 2044.20
+  }
+}
+
+```
+
 Welcome to **invoicing.services** API documentation! 
 
 You can use this API to create and store invoice PDF files online and get access from anywhere. 
 
-When a new invoice is created, you will get a link to your invoice PDF file like  [https://s3-us-west-2.amazonaws.com/files.invoicing.services/9bdbd202-b0e1-4d4a-913b-2f9eb1731ce7/dummies/2016/12/7cb0557e-bbd9-4625-84cf-76e7afec9d57.pdf](https://s3-us-west-2.amazonaws.com/files.invoicing.services/9bdbd202-b0e1-4d4a-913b-2f9eb1731ce7/dummies/2016/12/7cb0557e-bbd9-4625-84cf-76e7afec9d57.pdf). 
+When a new invoice is created, you will get a link to your invoice PDF file like:  
+
+[https://s3-us-west-2.amazonaws.com/files.invoicing.services/9bdbd202-b0e1-4d4a-913b-2f9eb1731ce7/dummies/2016/12/7cb0557e-bbd9-4625-84cf-76e7afec9d57.pdf](https://s3-us-west-2.amazonaws.com/files.invoicing.services/9bdbd202-b0e1-4d4a-913b-2f9eb1731ce7/dummies/2016/12/7cb0557e-bbd9-4625-84cf-76e7afec9d57.pdf). 
 
 Use this link to save or share your invoice.
 
 <aside class="success">
 Invoice files will be available for at least 5 years.
 </aside>
+
+Invoices are stored on [Amazon Web Services S3](https://aws.amazon.com/s3/) and each PDF file is coded with a unique name (f.ex. `7cb0557e-bbd9-4625-84cf-76e7afec9d57`). 
+
+The directory where your invoices are stored cannot be listed by other users, but anyone with an invoice link can access the PDF file.
 
 
 # API endpoint
@@ -108,8 +136,80 @@ An example.
 
 You may need to use the EUR currency code and display values using the French format (f.ex. 24,99 EUR). In that case you must set `countryCode` to `FR` value.
 
+# Seller API
 
-# Invoices
+## Update seller (Bill From).
+
+> Update seller example 
+
+```javascript
+var sellerJson = {
+    "id": "3338926K",
+    "name": "Capsule Corp",
+    "line1": "West City",
+    "taxIds": [
+      {
+        "name": "FC",
+        "value": "203/232/20202"
+      }
+    ]
+}
+```
+
+```javascript
+$.ajax({
+    method: 'POST',
+    url: 'https://api.invoicing.services/seller/update',
+    data: JSON.stringify(sellerJson),
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Api-Key': 'ExV0d92KzQ8QgsTVnevddpbB8cUaAfPs7ntVF8g0'
+    },
+    dataType: 'json',
+    success: function (response) {
+      console.log(response); 
+    },
+    error: function (xhr, textStatus, errorThrown) {
+      console.log(xhr);
+    }
+  });
+```
+
+> If successfull, the call will return the updated JSON structure (same as input).
+
+
+Use this method to set your `Bill From` data so you don't have to include that info each time you create a new Invoice. 
+
+<aside class="notice">
+You can also sing-in to your account to setup that info from the web.
+</aside>
+
+### HTTP Request
+
+`POST https://api.invoicing.services/seller/update`
+
+### Seller Parameters
+
+Parameter | Type | Default | Description | Notes
+--------- | -------  | ----------- | ----------- | -------
+id | string | | Actor (seller/buyer) id. | [optional]
+name | string | | Name.
+line1 | string | | Used to describe seller/buyer. |  [optional]
+line2 | string | | Additional info. |  [optional]
+line3 | string | | Additional info. |  [optional]
+taxIds | array | | List of tax codes.  | [optional]
+
+where TaxIds is a list of:
+
+### Tax codes
+
+Parameter | Type | Default | Description 
+--------- | -------  | ----------- | ----------- 
+name | string | | Tax name (f.ex. VA). | 
+value | string | | Tax Value (f.ex. BEB75884746). | 
+
+
+# Invoice API
 
 ## Create a new invoice.
 
@@ -220,12 +320,12 @@ To test how the API works you can use the `dummy` parameter. If set to `true`, y
     "subTotal": 2040.20,
     "taxTotals": [
       {
-        "taxRate": "20",
+        "taxRate": 20,
         "taxName": "VAT",
         "taxTotal": 400.04
       },
       {
-        "taxRate": "10",
+        "taxRate": 10,
         "taxName": "VAT",
         "taxTotal": 4.00
       }
@@ -260,7 +360,7 @@ To test how the API works you can use the `dummy` parameter. If set to `true`, y
 }
 ```
 
-### Invoice Json Parameters
+### Invoice Parameters
 
 Parameter | Type | Default | Description | Notes
 --------- | -------  | ----------- | ----------- | -------
