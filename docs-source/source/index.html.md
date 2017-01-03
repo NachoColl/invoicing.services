@@ -188,7 +188,7 @@ You can also sing-in to your account to setup that info from the web.
 
 `POST https://api.invoicing.services/seller/update`
 
-### Seller Parameters
+### Seller update Parameters
 
 Parameter | Type | Default | Description | Notes
 --------- | -------  | ----------- | ----------- | -------
@@ -207,6 +207,29 @@ Parameter | Type | Default | Description
 --------- | -------  | ----------- | ----------- 
 name | string | | Tax name (f.ex. VA). | 
 value | string | | Tax Value (f.ex. BEB75884746). | 
+
+## Get seller (Bill From).
+
+
+```javascript
+$.ajax({
+    method: 'POST',
+    url: 'https://api.invoicing.services/seller/get',
+    data: null,
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Api-Key': 'ExV0d92KzQ8QgsTVnevddpbB8cUaAfPs7ntVF8g0'
+    },
+  ...
+  });
+```
+### HTTP Request
+
+`POST https://api.invoicing.services/seller/get`
+
+### Seller get Parameters
+
+This call does not need any parameter. 
 
 
 # Invoice API

@@ -280,7 +280,7 @@ You can also sing-in to your account to setup that info from the web.
 
 <p><code class="prettyprint">POST https://api.invoicing.services/seller/update</code></p>
 
-<h3 id="seller-parameters">Seller Parameters</h3>
+<h3 id="seller-update-parameters">Seller update Parameters</h3>
 
 <table><thead>
 <tr>
@@ -360,6 +360,26 @@ You can also sing-in to your account to setup that info from the web.
 <td>Tax Value (f.ex. BEB75884746).</td>
 </tr>
 </tbody></table>
+
+<h2 id="get-seller-bill-from">Get seller (Bill From).</h2>
+<pre class="highlight javascript"><code><span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+    <span class="na">method</span><span class="p">:</span> <span class="s1">'POST'</span><span class="p">,</span>
+    <span class="na">url</span><span class="p">:</span> <span class="s1">'https://api.invoicing.services/seller/get'</span><span class="p">,</span>
+    <span class="na">data</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s1">'Content-Type'</span><span class="p">:</span> <span class="s1">'application/json'</span><span class="p">,</span>
+      <span class="s1">'X-Api-Key'</span><span class="p">:</span> <span class="s1">'ExV0d92KzQ8QgsTVnevddpbB8cUaAfPs7ntVF8g0'</span>
+    <span class="p">},</span>
+  <span class="p">...</span>
+  <span class="p">});</span>
+</code></pre>
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST https://api.invoicing.services/seller/get</code></p>
+
+<h3 id="seller-get-parameters">Seller get Parameters</h3>
+
+<p>This call does not need any parameter. </p>
 
 <h1 id="invoice-api">Invoice API</h1>
 
