@@ -225,7 +225,7 @@ You must replace <code>my-api-key</code> with your personal API key.
 
 <h3 id="invoice-country-code">Invoice Country Code</h3>
 
-<p>Invoice country code (f.ex. <code class="prettyprint">US</code>) is used to format currency values and also to get country related statistics. </p>
+<p>Invoice country code (f.ex. <code class="prettyprint">US</code>) is used to format currency and date values (and also to calculate some country related statistics). </p>
 
 <p>An example.</p>
 
@@ -233,7 +233,7 @@ You must replace <code>my-api-key</code> with your personal API key.
 
 <h1 id="seller-api">Seller API</h1>
 
-<h2 id="update-seller-bill-from">Update seller (Bill From).</h2>
+<h2 id="seller-update"><span style="color:green">seller/update</span></h2>
 
 <blockquote>
 <p>Update seller example </p>
@@ -280,7 +280,7 @@ You can also sing-in to your account to setup that info from the web.
 
 <p><code class="prettyprint">POST https://api.invoicing.services/seller/update</code></p>
 
-<h3 id="seller-update-parameters">Seller update Parameters</h3>
+<h3 id="request-parameters">Request Parameters</h3>
 
 <table><thead>
 <tr>
@@ -361,7 +361,7 @@ You can also sing-in to your account to setup that info from the web.
 </tr>
 </tbody></table>
 
-<h2 id="get-seller-bill-from">Get seller (Bill From).</h2>
+<h2 id="seller-get"><span style="color:green">seller/get</span></h2>
 <pre class="highlight javascript"><code><span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
     <span class="na">method</span><span class="p">:</span> <span class="s1">'POST'</span><span class="p">,</span>
     <span class="na">url</span><span class="p">:</span> <span class="s1">'https://api.invoicing.services/seller/get'</span><span class="p">,</span>
@@ -373,17 +373,21 @@ You can also sing-in to your account to setup that info from the web.
   <span class="p">...</span>
   <span class="p">});</span>
 </code></pre>
+<p>Use this method to get your <code class="prettyprint">Bill From</code> default values.</p>
+
 <h3 id="http-request">HTTP Request</h3>
 
 <p><code class="prettyprint">POST https://api.invoicing.services/seller/get</code></p>
 
-<h3 id="seller-get-parameters">Seller get Parameters</h3>
+<h3 id="request-parameters">Request Parameters</h3>
 
 <p>This call does not need any parameter. </p>
 
+<p><a name="invoice-json-example"></a></p>
+
 <h1 id="invoice-api">Invoice API</h1>
 
-<h2 id="create-a-new-invoice">Create a new invoice.</h2>
+<h2 id="invoice-add"><span style="color:green">invoice/add</span></h2>
 <pre class="highlight javascript"><code><span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
     <span class="na">method</span><span class="p">:</span> <span class="s1">'POST'</span><span class="p">,</span>
     <span class="na">url</span><span class="p">:</span> <span class="s1">'https://api.invoicing.services/invoice/add'</span><span class="p">,</span>
@@ -525,7 +529,7 @@ Automatic invoice ids will be formatted as [year_month_number] where the last nu
 
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<h3 id="invoice-parameters">Invoice Parameters</h3>
+<h3 id="request-parameters">Request Parameters</h3>
 
 <table><thead>
 <tr>
@@ -1000,6 +1004,145 @@ Automatic invoice ids will be formatted as [year_month_number] where the last nu
 <td>string</td>
 <td>&ldquo;#424242&rdquo;</td>
 <td>Template color.</td>
+</tr>
+</tbody></table>
+
+<h2 id="invoice-list"><span style="color:green">invoice/list</span></h2>
+<pre class="highlight javascript"><code>
+<span class="kd">var</span> <span class="nx">queryJson</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">"year"</span><span class="p">:</span><span class="mi">2017</span> <span class="p">};</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+    <span class="na">method</span><span class="p">:</span> <span class="s1">'POST'</span><span class="p">,</span>
+    <span class="na">url</span><span class="p">:</span> <span class="s1">'https://api.invoicing.services/invoice/list'</span><span class="p">,</span>
+    <span class="na">data</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">queryJson</span><span class="p">),</span>
+    <span class="p">...</span>
+  <span class="p">});</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"query"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"year"</span><span class="p">:</span><span class="w"> </span><span class="mi">2017</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"list"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"invoiceGuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2e898d14-e2fd-4d87-9403-75f1871c28b2"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"invoiceId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017_1_5"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"invoiceDate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1483871723354</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"invoiceBuyerName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ACME Corporation"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"invoiceTotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">2044.2</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"invoiceCurrency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"invoiceUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://..913b-2f9eb1731ce7/2017/01/2e898d14-e2fd-4d87-9403-75f1871c28b2.pdf"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"invoiceGuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"785bdaea-b575-4485-a886-b194af161a11"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"invoiceId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017_1_7"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"invoiceDate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1483871733325</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"invoiceBuyerName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ACME Corporation"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"invoiceTotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">2444.04</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"invoiceCurrency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"invoiceUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://..2-b0e1-4d4a-913b-2f9eb1731ce7/2017/01/785bdaea-b575-4485-a886-b194af161a11.pdf"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Use this method to get a list of invoices within a specific period of time</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST https://api.invoicing.services/invoice/list</code></p>
+
+<h3 id="request-parameters">Request Parameters</h3>
+
+<p>To get invoice list you must pass at least the <code class="prettyprint">year</code> paramater. Here are some examples:</p>
+
+<ul>
+<li><p>Query example 1: { &ldquo;year&rdquo;:2017 }</p></li>
+<li><p>Query example 2: { &ldquo;year&rdquo;:2017, &ldquo;quarter&rdquo;:2 }</p></li>
+<li><p>Query example 3: { &ldquo;year&rdquo;:2017, &ldquo;month&rdquo;:4, &ldquo;day&rdquo;:15 }</p></li>
+</ul>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+<th>Notes</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>year</td>
+<td>int</td>
+<td>-</td>
+<td>invoices year we want to get list</td>
+<td></td>
+</tr>
+<tr>
+<td>quarter</td>
+<td>int</td>
+<td>-</td>
+<td>allowed values: 1 to 4 representing Quarter 1,2,3 or 4</td>
+<td>[optional]</td>
+</tr>
+<tr>
+<td>month</td>
+<td>int</td>
+<td>-</td>
+<td>invoices month we want to get list</td>
+<td>[optional]</td>
+</tr>
+<tr>
+<td>day</td>
+<td>int</td>
+<td>-</td>
+<td>invoices day we want to get lit</td>
+<td>[optional]</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+If `quarter` parameter is set, `month` and `day` will be discarded.
+</aside>
+
+<h2 id="invoice-get"><span style="color:green">invoice/get</span></h2>
+<pre class="highlight javascript"><code>
+<span class="kd">var</span> <span class="nx">queryJson</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">"invoiceGuid"</span><span class="p">:</span><span class="s2">"a657de6e-3afe-4af5-b95e-288d3df472d0"</span> <span class="p">};</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+    <span class="na">method</span><span class="p">:</span> <span class="s1">'POST'</span><span class="p">,</span>
+    <span class="na">url</span><span class="p">:</span> <span class="s1">'https://api.invoicing.services/invoice/get'</span><span class="p">,</span>
+    <span class="na">data</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">queryJson</span><span class="p">),</span>
+    <span class="p">...</span>
+  <span class="p">});</span>
+</code></pre>
+<blockquote>
+<p>The above command returns an Invoice JSON (check json example <a href="#invoice-json-example">here</a>)</p>
+</blockquote>
+
+<p>Use this method to get a specific Invoice JSON formatted data.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST https://api.invoicing.services/invoice/get</code></p>
+
+<h3 id="request-parameters">Request Parameters</h3>
+
+<p>Each time you create an Invoice a new GUID is assigned. Use that GUID value to get the related Invoice JSON when required.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>invoiceGuid</td>
+<td>string</td>
+<td>-</td>
+<td>invoice GUID</td>
 </tr>
 </tbody></table>
 

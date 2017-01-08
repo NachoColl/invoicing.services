@@ -40,21 +40,6 @@ configure :build do
   # activate :asset_hash
   # activate :gzip
 	
-	
-  # Build favicon.ico
-  activate :favicon_maker, :icons => {
-    "_favicon.svg" => [
-      { icon: "favicon.ico", size: "64x64,32x32,24x24,16x16" },         # Used by IE, and also by some other browsers if we are not careful.
-      { icon: "favicon.png", size: "16x16" },                           # The classic favicon, displayed in the tabs.
-      { icon: "favicon-16x16.png" },                                    # The classic favicon, displayed in the tabs.
-      { icon: "favicon-32x32.png" },                                    # For Safari on Mac OS.
-      { icon: "favicon-96x96.png" },                                    # For Google TV.
-      { icon: "favicon-196x196.png" },                                  # For Android Chrome M31+.
-      { icon: "apple-touch-icon-72x72-precomposed.png" },
-      { icon: "apple-touch-icon-114x114-precomposed.png" },
-      { icon: "apple-touch-icon-152x152-precomposed.png" },
-    ]
-  }
 end
 
 # Deploy Configuration

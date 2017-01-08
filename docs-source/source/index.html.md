@@ -130,7 +130,7 @@ If you need to display a diferent format (f.ex. 20,99) please check Invoice Coun
 
 ### Invoice Country Code
 
-Invoice country code (f.ex. `US`) is used to format currency values and also to get country related statistics. 
+Invoice country code (f.ex. `US`) is used to format currency and date values (and also to calculate some country related statistics). 
 
 An example.
 
@@ -138,7 +138,7 @@ You may need to use the EUR currency code and display values using the French fo
 
 # Seller API
 
-## Update seller (Bill From).
+## <span style="color:green">seller/update</span>
 
 > Update seller example 
 
@@ -188,7 +188,7 @@ You can also sing-in to your account to setup that info from the web.
 
 `POST https://api.invoicing.services/seller/update`
 
-### Seller update Parameters
+### Request Parameters
 
 Parameter | Type | Default | Description | Notes
 --------- | -------  | ----------- | ----------- | -------
@@ -208,7 +208,7 @@ Parameter | Type | Default | Description
 name | string | | Tax name (f.ex. VA). | 
 value | string | | Tax Value (f.ex. BEB75884746). | 
 
-## Get seller (Bill From).
+## <span style="color:green">seller/get</span>
 
 
 ```javascript
@@ -223,18 +223,22 @@ $.ajax({
   ...
   });
 ```
+
+Use this method to get your `Bill From` default values.
+
+
 ### HTTP Request
 
 `POST https://api.invoicing.services/seller/get`
 
-### Seller get Parameters
+### Request Parameters
 
 This call does not need any parameter. 
 
-
+<a name="invoice-json-example"></a>
 # Invoice API
 
-## Create a new invoice.
+## <span style="color:green">invoice/add</span>
 
 ```javascript
 $.ajax({
@@ -383,7 +387,7 @@ To test how the API works you can use the `dummy` parameter. If set to `true`, y
 }
 ```
 
-### Invoice Parameters
+### Request Parameters
 
 Parameter | Type | Default | Description | Notes
 --------- | -------  | ----------- | ----------- | -------
@@ -498,4 +502,106 @@ color3 | string | "#424242" | Template color.
 
 
 
+## <span style="color:green">invoice/list</span>
 
+```javascript
+
+var queryJson = { "year":2017 };
+$.ajax({
+    method: 'POST',
+    url: 'https://api.invoicing.services/invoice/list',
+    data: JSON.stringify(queryJson),
+    ...
+  });
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "query": {
+    "year": 2017
+  },
+  "count": 2,
+  "list": [
+    {
+      "invoiceGuid": "2e898d14-e2fd-4d87-9403-75f1871c28b2",
+      "invoiceId": "2017_1_5",
+      "invoiceDate": 1483871723354,
+      "invoiceBuyerName": "ACME Corporation",
+      "invoiceTotal": 2044.2,
+      "invoiceCurrency": "USD",
+      "invoiceUrl": "https://..913b-2f9eb1731ce7/2017/01/2e898d14-e2fd-4d87-9403-75f1871c28b2.pdf"
+    },
+    {
+      "invoiceGuid": "785bdaea-b575-4485-a886-b194af161a11",
+      "invoiceId": "2017_1_7",
+      "invoiceDate": 1483871733325,
+      "invoiceBuyerName": "ACME Corporation",
+      "invoiceTotal": 2444.04,
+      "invoiceCurrency": "USD",
+      "invoiceUrl": "https://..2-b0e1-4d4a-913b-2f9eb1731ce7/2017/01/785bdaea-b575-4485-a886-b194af161a11.pdf"
+    }
+  ]
+}
+```
+
+Use this method to get a list of invoices within a specific period of time
+
+### HTTP Request
+
+`POST https://api.invoicing.services/invoice/list`
+
+### Request Parameters
+
+To get invoice list you must pass at least the `year` paramater. Here are some examples:
+
+* Query example 1: { "year":2017 }
+
+* Query example 2: { "year":2017, "quarter":2 }
+
+* Query example 3: { "year":2017, "month":4, "day":15 }
+
+
+Parameter | Type | Default | Description | Notes
+--------- | -------  | ----------- | ----------- | -------
+year | int | - | invoices year we want to get list |
+quarter | int | - | allowed values: 1 to 4 representing Quarter 1,2,3 or 4 | [optional]
+month | int | - | invoices month we want to get list | [optional]
+day | int | - | invoices day we want to get lit | [optional]
+
+<aside class="notice">
+If `quarter` parameter is set, `month` and `day` will be discarded.
+</aside>
+
+
+## <span style="color:green">invoice/get</span>
+
+```javascript
+
+var queryJson = { "invoiceGuid":"a657de6e-3afe-4af5-b95e-288d3df472d0" };
+$.ajax({
+    method: 'POST',
+    url: 'https://api.invoicing.services/invoice/get',
+    data: JSON.stringify(queryJson),
+    ...
+  });
+```
+
+> The above command returns an Invoice JSON (check json example [here](#invoice-json-example))
+
+
+Use this method to get a specific Invoice JSON formatted data.
+
+### HTTP Request
+
+`POST https://api.invoicing.services/invoice/get`
+
+### Request Parameters
+
+Each time you create an Invoice a new GUID is assigned. Use that GUID value to get the related Invoice JSON when required.
+
+
+Parameter | Type | Default | Description 
+--------- | -------  | ----------- | ----------- 
+invoiceGuid | string | - | invoice GUID 
