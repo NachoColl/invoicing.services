@@ -88,10 +88,10 @@
     </style>
     <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
     <link href="stylesheets/print.css" rel="stylesheet" media="print" />
-      <script src="javascripts/all.js"></script>
+      <script src="javascripts/all_nosearch.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;javascript&quot;]">
+  <body class="index" data-languages="[&quot;csharp&quot;,&quot;javascript&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -99,14 +99,11 @@
       </span>
     </a>
     <div class="tocify-wrapper">
-      <img src="images/logo.png" alt="Logo" />
+	  <ul class="tocify-header" style="padding-top:10px; font-size:1em"><li class="tocify-item tocify-focus"><a>invoicing.services Docs</a></li></ul>
         <div class="lang-selector">
+              <a href="#" data-language-name="csharp">.NET</a>
               <a href="#" data-language-name="javascript">javascript</a>
         </div>
-        <div class="search">
-          <input type="text" class="search" id="input-search" placeholder="Search">
-        </div>
-        <ul class="search-results"></ul>
       <div id="toc">
       </div>
         <ul class="toc-footer">
@@ -122,39 +119,58 @@
 <blockquote>
 <p>&ldquo;Hello world!&rdquo; invoice definition example.</p>
 </blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"buyer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ACME Corporation"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ACME ARTIFICIAL ROCK"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"unitPrice"</span><span class="p">:</span><span class="w"> </span><span class="mf">1000.10</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"itemTotalAmount"</span><span class="p">:</span><span class="w"> </span><span class="mf">2000.20</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">],</span><span class="w">
-  </span><span class="nt">"totals"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">2044.20</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">invoice</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s2">"buyer"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"ACME Corporation"</span>
+  <span class="p">},</span>
+  <span class="s2">"items"</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"ACME ARTIFICIAL ROCK"</span><span class="p">,</span>
+      <span class="s2">"unitPrice"</span><span class="p">:</span> <span class="mf">1000.10</span><span class="p">,</span>
+      <span class="s2">"quantity"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+      <span class="s2">"itemTotalAmount"</span><span class="p">:</span> <span class="mf">2000.20</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="s2">"totals"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">"total"</span><span class="p">:</span> <span class="mf">2044.20</span>
+  <span class="p">}</span>
+<span class="p">};</span>
 
-</span></code></pre>
+</code></pre><pre class="highlight csharp"><code><span class="kt">var</span> <span class="n">invoice</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Model</span><span class="p">.</span><span class="nf">Invoice</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">Buyer</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Model</span><span class="p">.</span><span class="nf">Actor</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">Name</span> <span class="p">=</span> <span class="s">"ACME Corporation"</span>
+    <span class="p">},</span>
+    <span class="n">Items</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Model</span><span class="p">.</span><span class="n">InvoiceItem</span><span class="p">&gt;()</span> <span class="p">{</span>
+         <span class="k">new</span> <span class="n">Model</span><span class="p">.</span><span class="nf">InvoiceItem</span><span class="p">()</span> <span class="p">{</span>
+             <span class="n">Name</span> <span class="p">=</span> <span class="s">"ACME ARTIFICIAL ROCK"</span><span class="p">,</span>
+             <span class="n">UnitPrice</span> <span class="p">=</span> <span class="m">1000.10</span><span class="n">m</span><span class="p">,</span>
+             <span class="n">Quantity</span> <span class="p">=</span> <span class="m">2</span><span class="p">,</span>
+             <span class="n">ItemTotalAmount</span> <span class="p">=</span> <span class="m">2000.20</span><span class="n">m</span>
+         <span class="p">}</span> <span class="p">},</span>
+    <span class="n">Totals</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Model</span><span class="p">.</span><span class="nf">InvoiceTotals</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">Total</span> <span class="p">=</span> <span class="m">2044.20</span><span class="n">m</span> 
+    <span class="p">}</span>
+<span class="p">};</span>
+</code></pre>
 <p>Welcome to <strong>invoicing.services</strong> API documentation! </p>
 
 <p>You can use this API to create and store invoice PDF files online and get access from anywhere. </p>
+
+<aside class="success">
+To install the .NET SDK, just get the nuget package <strong>invoicing.services.sdk.dotNET</strong>.
+</aside>
 
 <p>When a new invoice is created, you will get a link to your invoice PDF file like:  </p>
 
 <p><a href="https://s3-us-west-2.amazonaws.com/files.invoicing.services/9bdbd202-b0e1-4d4a-913b-2f9eb1731ce7/dummies/2016/12/7cb0557e-bbd9-4625-84cf-76e7afec9d57.pdf">https://s3-us-west-2.amazonaws.com/files.invoicing.services/9bdbd202-b0e1-4d4a-913b-2f9eb1731ce7/dummies/2016/12/7cb0557e-bbd9-4625-84cf-76e7afec9d57.pdf</a>. </p>
 
-<p>Use this link to save or share your invoice.</p>
+<p>Use this link share your invoice.</p>
 
-<aside class="success">
+<aside class="notice">
 Invoice files will be available for at least 5 years.
 </aside>
 
-<p>Invoices are stored on <a href="https://aws.amazon.com/s3/">Amazon Web Services S3</a> and each PDF file is coded with a unique name (f.ex. <code class="prettyprint">7cb0557e-bbd9-4625-84cf-76e7afec9d57</code>). </p>
+<p>Invoices are stored on <a href="https://aws.amazon.com/s3/">Amazon Web Services S3</a> and each PDF file is coded with a unique GUID (f.ex. <code class="prettyprint">7cb0557e-bbd9-4625-84cf-76e7afec9d57</code>). </p>
 
 <p>The directory where your invoices are stored cannot be listed by other users, but anyone with an invoice link can access the PDF file.</p>
 
@@ -174,6 +190,9 @@ Invoice files will be available for at least 5 years.
     <span class="p">},</span>
     <span class="p">...</span>
   <span class="p">});</span>
+</code></pre><pre class="highlight csharp"><code>
+ <span class="n">InvoicingAPI</span> <span class="n">API</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">InvoicingAPI</span><span class="p">(</span><span class="s">"my-api-key"</span><span class="p">);</span>
+
 </code></pre>
 <p><strong>invoicing.services</strong> uses API keys to allow access to the API methods. You can get an API key at our <a href="https://invoicing.services">website</a>.</p>
 
@@ -210,6 +229,20 @@ You must replace <code>my-api-key</code> with your personal API key.
     <span class="p">...</span>
 
 <span class="p">}</span>
+</code></pre><pre class="highlight csharp"><code><span class="c1">// Setting CountryCode to "FR" (France) will show prices </span>
+<span class="c1">// like "20,01" and dates like "31/12/2017".</span>
+
+<span class="n">AddInvoiceResponse</span> <span class="n">response</span> <span class="p">=</span> <span class="n">API</span><span class="p">.</span><span class="nf">AddInvoice</span><span class="p">(</span><span class="k">new</span> <span class="n">Model</span><span class="p">.</span><span class="nf">Invoice</span><span class="p">()</span> <span class="p">{</span>
+    <span class="p">...</span>
+    <span class="n">Date</span> <span class="p">=</span> <span class="n">Utils</span><span class="p">.</span><span class="n">Timestamp</span><span class="p">.</span><span class="nf">CurrentTimeMillis</span><span class="p">();,</span>
+    <span class="p">...</span>
+    <span class="n">UnitPrice</span> <span class="p">=</span> <span class="m">20.01</span><span class="n">m</span><span class="p">,</span>
+    <span class="p">...</span>
+    <span class="n">CountryCode</span> <span class="p">=</span> <span class="s">"FR"</span><span class="p">,</span>
+
+ <span class="p">});</span>
+
+
 </code></pre>
 <h3 id="invoice-dates-format">Invoice Dates Format</h3>
 
@@ -249,7 +282,8 @@ You must replace <code>my-api-key</code> with your personal API key.
       <span class="p">}</span>
     <span class="p">]</span>
 <span class="p">}</span>
-</code></pre><pre class="highlight javascript"><code><span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+
+<span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
     <span class="na">method</span><span class="p">:</span> <span class="s1">'POST'</span><span class="p">,</span>
     <span class="na">url</span><span class="p">:</span> <span class="s1">'https://api.invoicing.services/seller/update'</span><span class="p">,</span>
     <span class="na">data</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">sellerJson</span><span class="p">),</span>
@@ -265,9 +299,22 @@ You must replace <code>my-api-key</code> with your personal API key.
       <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">xhr</span><span class="p">);</span>
     <span class="p">}</span>
   <span class="p">});</span>
+</code></pre><pre class="highlight csharp"><code><span class="n">InvoicingAPI</span> <span class="n">API</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">InvoicingAPI</span><span class="p">(</span><span class="s">"ExV0d92KzQ8QgsTVnevddpbB8cUaAfPs7ntVF8g0"</span><span class="p">);</span>
+
+<span class="n">Model</span><span class="p">.</span><span class="n">Actor</span> <span class="n">response</span> <span class="p">=</span> <span class="n">API</span><span class="p">.</span><span class="nf">UpdateSeller</span><span class="p">(</span><span class="k">new</span> <span class="n">Model</span><span class="p">.</span><span class="nf">Actor</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">Id</span> <span class="p">=</span> <span class="s">"3338926K"</span><span class="p">,</span>
+    <span class="n">Name</span> <span class="p">=</span> <span class="s">"Capsule Corp"</span><span class="p">,</span>
+    <span class="n">Line1</span><span class="p">=</span><span class="s">"West City"</span><span class="p">,</span>
+    <span class="n">TaxIds</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Model</span><span class="p">.</span><span class="n">ActorTaxId</span><span class="p">&gt;()</span> <span class="p">{</span>
+         <span class="k">new</span> <span class="n">Model</span><span class="p">.</span><span class="nf">ActorTaxId</span><span class="p">()</span> <span class="p">{</span>
+             <span class="n">Name</span> <span class="p">=</span> <span class="s">"FC"</span><span class="p">,</span>
+             <span class="n">Value</span> <span class="p">=</span> <span class="s">"203/232/20202"</span>
+         <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">});</span>
 </code></pre>
 <blockquote>
-<p>If successfull, the call will return the updated JSON structure (same as input).</p>
+<p>If successfull, the call will return the updated structure (same values as input).</p>
 </blockquote>
 
 <p>Use this method to set your <code class="prettyprint">Bill From</code> data so you don&rsquo;t have to include that info each time you create a new Invoice. </p>
@@ -383,9 +430,9 @@ You can also sing-in to your account to setup that info from the web.
 
 <p>This call does not need any parameter. </p>
 
-<p><a name="invoice-json-example"></a></p>
-
 <h1 id="invoice-api">Invoice API</h1>
+
+<p><a name="invoice-add"></a></p>
 
 <h2 id="invoice-add"><span style="color:green">invoice/add</span></h2>
 <pre class="highlight javascript"><code><span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
@@ -404,16 +451,192 @@ You can also sing-in to your account to setup that info from the web.
       <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">xhr</span><span class="p">);</span>
     <span class="p">}</span>
   <span class="p">});</span>
+</code></pre><pre class="highlight csharp"><code><span class="n">InvoicingAPI</span> <span class="n">API</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">InvoicingAPI</span><span class="p">(</span><span class="n">MY_API_KEY</span><span class="p">);</span>
+
+<span class="n">AddInvoiceResponse</span> <span class="n">response</span> <span class="p">=</span> <span class="n">API</span><span class="p">.</span><span class="nf">AddInvoice</span><span class="p">(</span><span class="n">invoice</span><span class="p">);</span>
 </code></pre>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="nt">"invoiceId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016_12_1"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"invoiceDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1482945673350"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"invoiceFileURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://.../63226081-0eb4-4046-ab27-166261f70dc6.pdf"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
+<pre class="highlight javascript"><code><span class="p">{</span>
+    <span class="s2">"invoiceId"</span><span class="p">:</span> <span class="s2">"2016_12_1"</span><span class="p">,</span>
+    <span class="s2">"invoiceDate"</span><span class="p">:</span> <span class="s2">"1482945673350"</span><span class="p">,</span>
+    <span class="s2">"invoiceFileURL"</span><span class="p">:</span> <span class="s2">"https://.../63226081-0eb4-4046-ab27-166261f70dc6.pdf"</span>
+<span class="p">}</span>
+</code></pre><pre class="highlight csharp"><code><span class="k">public</span> <span class="k">class</span> <span class="nc">AddInvoiceResponse</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="kt">string</span> <span class="n">InvoiceId</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="k">public</span> <span class="kt">string</span> <span class="n">InvoiceDate</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="k">public</span> <span class="kt">string</span> <span class="n">InvoiceFileURL</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<blockquote>
+<p>Extensive invoice definition example:</p>
+</blockquote>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">invoice</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s2">"currencyCode"</span><span class="p">:</span> <span class="s2">"USD"</span><span class="p">,</span>
+  <span class="s2">"countryCode"</span><span class="p">:</span> <span class="s2">"US"</span><span class="p">,</span>
+  <span class="s2">"seller"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">"id"</span><span class="p">:</span> <span class="s2">"3338926K"</span><span class="p">,</span>
+    <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"AXTIA TECHNOLOGIES"</span><span class="p">,</span>
+    <span class="s2">"line1"</span><span class="p">:</span> <span class="s2">"West City"</span>
+  <span class="p">},</span>
+  <span class="s2">"buyer"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">"id"</span><span class="p">:</span> <span class="s2">"Rabbit 1988"</span><span class="p">,</span>
+    <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"ACME Corporation"</span><span class="p">,</span>
+    <span class="s2">"line1"</span><span class="p">:</span> <span class="s2">"Looney Tunes Street"</span><span class="p">,</span>
+    <span class="s2">"line2"</span><span class="p">:</span> <span class="s2">"El Coyote"</span><span class="p">,</span>
+    <span class="s2">"taxIds"</span><span class="p">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"FC"</span><span class="p">,</span>
+        <span class="s2">"value"</span><span class="p">:</span> <span class="s2">"203/232/20202"</span>
+      <span class="p">}</span>    
+    <span class="p">]</span>
+
+  <span class="p">},</span>
+  <span class="s2">"items"</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"ACME ARTIFICIAL ROCK"</span><span class="p">,</span>
+      <span class="s2">"description"</span><span class="p">:</span> <span class="s2">"Have hours of amusement pretending to be a rock with the ACME Artificial Rock."</span><span class="p">,</span>
+      <span class="s2">"unitPrice"</span><span class="p">:</span> <span class="mf">1000.10</span><span class="p">,</span>
+      <span class="s2">"taxes"</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+          <span class="s2">"taxRate"</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+          <span class="s2">"taxName"</span><span class="p">:</span> <span class="s2">"VAT"</span>
+        <span class="p">}</span>
+      <span class="p">],</span>
+      <span class="s2">"quantity"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+      <span class="s2">"itemSubTotalAmount"</span><span class="p">:</span> <span class="mf">2000.20</span><span class="p">,</span>
+      <span class="s2">"itemTotalAmount"</span><span class="p">:</span> <span class="mf">2400.04</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"ACME ASPIRIN"</span><span class="p">,</span>
+      <span class="s2">"description"</span><span class="p">:</span> <span class="s2">"ACME is recognized worldwide as a leading producer of acetylsalicylic acid."</span><span class="p">,</span>
+      <span class="s2">"unitPrice"</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+      <span class="s2">"taxes"</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+          <span class="s2">"taxRate"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+          <span class="s2">"taxName"</span><span class="p">:</span> <span class="s2">"VAT"</span>
+        <span class="p">}</span>
+      <span class="p">],</span>
+      <span class="s2">"quantity"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+      <span class="s2">"itemSubTotalAmount"</span><span class="p">:</span> <span class="mf">40.00</span><span class="p">,</span>
+      <span class="s2">"itemTotalAmount"</span><span class="p">:</span> <span class="mf">44.00</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="s2">"totals"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">"subTotal"</span><span class="p">:</span> <span class="mf">2040.20</span><span class="p">,</span>
+    <span class="s2">"taxTotals"</span><span class="p">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="s2">"taxRate"</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+        <span class="s2">"taxName"</span><span class="p">:</span> <span class="s2">"VAT"</span><span class="p">,</span>
+        <span class="s2">"taxTotal"</span><span class="p">:</span> <span class="mf">400.04</span>
+      <span class="p">},</span>
+      <span class="p">{</span>
+        <span class="s2">"taxRate"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+        <span class="s2">"taxName"</span><span class="p">:</span> <span class="s2">"VAT"</span><span class="p">,</span>
+        <span class="s2">"taxTotal"</span><span class="p">:</span> <span class="mf">4.00</span>
+      <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="s2">"total"</span><span class="p">:</span> <span class="mf">2444.04</span>
+  <span class="p">},</span>
+  <span class="s2">"notes"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">"line1"</span><span class="p">:</span> <span class="s2">"The Complete Illustrated Catalog of ACME Products"</span><span class="p">,</span>
+    <span class="s2">"line2"</span><span class="p">:</span> <span class="s2">"Payment 60 days after invoice date."</span><span class="p">,</span>
+    <span class="s2">"line3"</span><span class="p">:</span> <span class="s2">"That's all folks."</span>
+  <span class="p">},</span>
+  <span class="s2">"labels"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">"title"</span><span class="p">:</span> <span class="s2">"INVOICE #"</span><span class="p">,</span>
+    <span class="s2">"sellerLabel"</span><span class="p">:</span> <span class="s2">"Bill From:"</span><span class="p">,</span>
+    <span class="s2">"SellerTaxIdsLabel"</span><span class="p">:</span> <span class="s2">"Tax ID(s)"</span><span class="p">,</span>
+    <span class="s2">"buyerLabel"</span><span class="p">:</span> <span class="s2">"Bill To:"</span><span class="p">,</span>
+    <span class="s2">"BuyerTaxIdsLabel"</span><span class="p">:</span> <span class="s2">"Tax ID(s)"</span><span class="p">,</span>
+    <span class="s2">"itemsListItem"</span><span class="p">:</span> <span class="s2">"Item"</span><span class="p">,</span>
+    <span class="s2">"itemsListPrice"</span><span class="p">:</span> <span class="s2">"Price"</span><span class="p">,</span>
+    <span class="s2">"itemsListQty"</span><span class="p">:</span> <span class="s2">"Qty"</span><span class="p">,</span>
+    <span class="s2">"itemsListSubtotal"</span><span class="p">:</span> <span class="s2">"Subtotal"</span><span class="p">,</span>
+    <span class="s2">"itemsListTotal"</span><span class="p">:</span> <span class="s2">"Total"</span><span class="p">,</span>
+    <span class="s2">"subtotal"</span><span class="p">:</span> <span class="s2">"Subtotal"</span><span class="p">,</span>
+    <span class="s2">"total"</span><span class="p">:</span> <span class="s2">"Total"</span>
+  <span class="p">},</span>
+  <span class="s2">"colors"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">"color1"</span><span class="p">:</span> <span class="s2">"#2E2E2E"</span><span class="p">,</span>
+    <span class="s2">"color2"</span><span class="p">:</span> <span class="s2">"#585858"</span><span class="p">,</span>
+    <span class="s2">"color3"</span><span class="p">:</span> <span class="s2">"#424242"</span>
+  <span class="p">}</span>
+
+<span class="p">};</span>
+</code></pre><pre class="highlight csharp"><code><span class="k">new</span> <span class="n">Model</span><span class="p">.</span><span class="nf">Invoice</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="n">Id</span><span class="p">=</span><span class="s">"0000123"</span><span class="p">,</span>
+    <span class="n">Date</span> <span class="p">=</span> <span class="n">Utils</span><span class="p">.</span><span class="n">Timestamp</span><span class="p">.</span><span class="nf">CurrentTimeMillis</span><span class="p">(),</span>
+    <span class="n">CurrencyCode</span> <span class="p">=</span> <span class="s">"USD"</span><span class="p">,</span>
+    <span class="n">CountryCode</span> <span class="p">=</span> <span class="s">"US"</span><span class="p">,</span>
+    <span class="n">Seller</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Model</span><span class="p">.</span><span class="nf">Actor</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">Id</span><span class="p">=</span><span class="s">"My Seller ID"</span><span class="p">,</span>
+        <span class="n">Name</span><span class="p">=</span><span class="s">"I am a Seller"</span><span class="p">,</span>
+        <span class="n">Line1</span><span class="p">=</span><span class="s">"This is my address."</span><span class="p">,</span>
+        <span class="n">TaxIds</span><span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Model</span><span class="p">.</span><span class="n">ActorTaxId</span><span class="p">&gt;()</span> <span class="p">{</span>
+            <span class="k">new</span> <span class="n">Model</span><span class="p">.</span><span class="nf">ActorTaxId</span><span class="p">()</span> <span class="p">{</span>
+                <span class="n">Name</span><span class="p">=</span><span class="s">"FEV"</span><span class="p">,</span>
+                <span class="n">Value</span><span class="p">=</span><span class="s">"774646/OL"</span>
+            <span class="p">},</span>
+            <span class="k">new</span> <span class="n">Model</span><span class="p">.</span><span class="nf">ActorTaxId</span><span class="p">()</span> <span class="p">{</span>
+                <span class="n">Name</span><span class="p">=</span><span class="s">"FR"</span><span class="p">,</span>
+                <span class="n">Value</span><span class="p">=</span><span class="s">"US7758847"</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="n">Buyer</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Model</span><span class="p">.</span><span class="nf">Actor</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">Id</span><span class="p">=</span><span class="s">"INTERNAL 00212"</span><span class="p">,</span>
+        <span class="n">Name</span> <span class="p">=</span> <span class="s">"My First Invoice Buyer"</span><span class="p">,</span>
+        <span class="n">Line1</span> <span class="p">=</span> <span class="s">"Company Address Line 1"</span><span class="p">,</span>
+        <span class="n">Line2</span> <span class="p">=</span> <span class="s">"Address Line 2"</span><span class="p">,</span>
+        <span class="n">TaxIds</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Model</span><span class="p">.</span><span class="n">ActorTaxId</span><span class="p">&gt;()</span> <span class="p">{</span>
+            <span class="k">new</span> <span class="n">Model</span><span class="p">.</span><span class="nf">ActorTaxId</span><span class="p">()</span> <span class="p">{</span>
+                <span class="n">Name</span> <span class="p">=</span> <span class="s">"FR"</span><span class="p">,</span>
+                <span class="n">Value</span><span class="p">=</span><span class="s">"US9093930"</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="n">Items</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Model</span><span class="p">.</span><span class="n">InvoiceItem</span><span class="p">&gt;()</span> <span class="p">{</span>
+         <span class="k">new</span> <span class="n">Model</span><span class="p">.</span><span class="nf">InvoiceItem</span><span class="p">()</span> <span class="p">{</span>
+             <span class="n">Name</span> <span class="p">=</span> <span class="s">"My Product Name"</span><span class="p">,</span>
+             <span class="n">Description</span> <span class="p">=</span> <span class="s">"Product description."</span><span class="p">,</span>
+             <span class="n">UnitPrice</span> <span class="p">=</span> <span class="m">20.01</span><span class="n">m</span><span class="p">,</span>
+             <span class="n">Quantity</span> <span class="p">=</span> <span class="m">2</span><span class="p">,</span>
+             <span class="n">Taxes</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Model</span><span class="p">.</span><span class="n">Tax</span><span class="p">&gt;()</span> <span class="p">{</span>
+                 <span class="k">new</span> <span class="n">Model</span><span class="p">.</span><span class="nf">Tax</span><span class="p">()</span> <span class="p">{</span>
+                     <span class="n">TaxName</span> <span class="p">=</span> <span class="s">"VAT"</span><span class="p">,</span>
+                     <span class="n">TaxRate</span> <span class="p">=</span> <span class="m">10</span>
+                 <span class="p">}</span>
+             <span class="p">},</span>
+             <span class="n">ItemSubTotalAmount</span> <span class="p">=</span> <span class="m">40.02</span><span class="n">m</span><span class="p">,</span>
+             <span class="n">ItemTotalAmount</span> <span class="p">=</span> <span class="m">44.02</span><span class="n">m</span>
+         <span class="p">}</span> <span class="p">},</span>
+    <span class="n">Totals</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Model</span><span class="p">.</span><span class="nf">InvoiceTotals</span><span class="p">()</span> <span class="p">{</span>
+         <span class="n">SubTotal</span> <span class="p">=</span> <span class="m">40.02</span><span class="n">m</span><span class="p">,</span>
+         <span class="n">TaxTotals</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Model</span><span class="p">.</span><span class="n">InvoiceTaxTotal</span><span class="p">&gt;()</span> <span class="p">{</span>
+             <span class="k">new</span> <span class="n">Model</span><span class="p">.</span><span class="nf">InvoiceTaxTotal</span><span class="p">()</span> <span class="p">{</span>
+                 <span class="n">TaxName</span><span class="p">=</span><span class="s">"VAT"</span><span class="p">,</span>
+                 <span class="n">TaxRate</span><span class="p">=</span><span class="m">10</span><span class="p">,</span>
+                 <span class="n">TaxTotal</span><span class="p">=</span><span class="m">4.00</span><span class="n">m</span>
+             <span class="p">}</span>
+         <span class="p">},</span>
+        <span class="n">Total</span> <span class="p">=</span> <span class="m">44.02</span><span class="n">m</span>
+    <span class="p">},</span>
+    <span class="n">Notes</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Model</span><span class="p">.</span><span class="nf">TextBlock</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">Line1</span><span class="p">=</span><span class="s">"This is a note to include some text/conditions."</span>
+    <span class="p">},</span>
+    <span class="n">Labels</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Model</span><span class="p">.</span><span class="nf">Labels</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">Title</span> <span class="p">=</span> <span class="s">"QUOTATION"</span><span class="p">,</span>
+        <span class="n">Total</span> <span class="p">=</span> <span class="s">"Total Quotation"</span>
+    <span class="p">},</span>
+    <span class="n">Colors</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Model</span><span class="p">.</span><span class="nf">Colors</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">Color1</span> <span class="p">=</span> <span class="s">"#766755"</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</code></pre>
 <p>Use this method to create a new invoice.</p>
 
 <h3 id="http-request">HTTP Request</h3>
@@ -432,103 +655,6 @@ Automatic invoice ids will be formatted as [year_month_number] where the last nu
 
 <p>To test how the API works you can use the <code class="prettyprint">dummy</code> parameter. If set to <code class="prettyprint">true</code>, your invoice will be saved on a separate folder and will not be counted.</p>
 
-<blockquote>
-<p>Invoice JSON example.</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"currencyCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"countryCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"seller"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3338926K"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AXTIA TECHNOLOGIES"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"line1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"West City"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"buyer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rabbit 1988"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ACME Corporation"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"line1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Looney Tunes Street"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"line2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"El Coyote"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"taxIds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FC"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"203/232/20202"</span><span class="w">
-      </span><span class="p">}</span><span class="w">    
-    </span><span class="p">]</span><span class="w">
-
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ACME ARTIFICIAL ROCK"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Have hours of amusement pretending to be a rock with the ACME Artificial Rock."</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"unitPrice"</span><span class="p">:</span><span class="w"> </span><span class="mf">1000.10</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"taxes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"taxRate"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"taxName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VAT"</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-      </span><span class="p">],</span><span class="w">
-      </span><span class="nt">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"itemSubTotalAmount"</span><span class="p">:</span><span class="w"> </span><span class="mf">2000.20</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"itemTotalAmount"</span><span class="p">:</span><span class="w"> </span><span class="mf">2400.04</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ACME ASPIRIN"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ACME is recognized worldwide as a leading producer of acetylsalicylic acid."</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"unitPrice"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"taxes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"taxRate"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"taxName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VAT"</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-      </span><span class="p">],</span><span class="w">
-      </span><span class="nt">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"itemSubTotalAmount"</span><span class="p">:</span><span class="w"> </span><span class="mf">40.00</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"itemTotalAmount"</span><span class="p">:</span><span class="w"> </span><span class="mf">44.00</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">],</span><span class="w">
-  </span><span class="nt">"totals"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"subTotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">2040.20</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"taxTotals"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"taxRate"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"taxName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VAT"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"taxTotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">400.04</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"taxRate"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"taxName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VAT"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"taxTotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.00</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">2444.04</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"notes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"line1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The Complete Illustrated Catalog of ACME Products"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"line2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Payment 60 days after invoice date."</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"line3"</span><span class="p">:</span><span class="w"> </span><span class="s2">"That's all folks."</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"labels"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INVOICE #"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"sellerLabel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bill From:"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"SellerTaxIdsLabel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tax ID(s)"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"buyerLabel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bill To:"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"BuyerTaxIdsLabel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tax ID(s)"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"itemsListItem"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Item"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"itemsListPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Price"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"itemsListQty"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Qty"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"itemsListSubtotal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Subtotal"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"itemsListTotal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Total"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"subtotal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Subtotal"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Total"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"colors"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"color1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#2E2E2E"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"color2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#585858"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"color3"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#424242"</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
 <h3 id="request-parameters">Request Parameters</h3>
 
 <table><thead>
@@ -1016,37 +1142,63 @@ Automatic invoice ids will be formatted as [year_month_number] where the last nu
     <span class="na">data</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">queryJson</span><span class="p">),</span>
     <span class="p">...</span>
   <span class="p">});</span>
+</code></pre><pre class="highlight csharp"><code><span class="n">InvoicingAPI</span> <span class="n">API</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">InvoicingAPI</span><span class="p">(</span><span class="n">MY_API_KEY</span><span class="p">);</span>
+<span class="n">ListInvoiceResponse</span> <span class="n">response</span> <span class="p">=</span> <span class="n">API</span><span class="p">.</span><span class="nf">ListInvoice</span><span class="p">(</span><span class="k">new</span> <span class="n">Model</span><span class="p">.</span><span class="n">APIQueries</span><span class="p">.</span><span class="nf">ListInvoiceQuery</span><span class="p">()</span> <span class="p">{</span> 
+    <span class="n">Year</span> <span class="p">=</span> <span class="m">2017</span><span class="p">,</span> 
+    <span class="n">Quarter</span> <span class="p">=</span> <span class="m">1</span> 
+<span class="p">});</span>
+
 </code></pre>
 <blockquote>
-<p>The above command returns JSON structured like this:</p>
+<p>The above command returns:</p>
 </blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"query"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"year"</span><span class="p">:</span><span class="w"> </span><span class="mi">2017</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"list"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"invoiceGuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2e898d14-e2fd-4d87-9403-75f1871c28b2"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"invoiceId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017_1_5"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"invoiceDate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1483871723354</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"invoiceBuyerName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ACME Corporation"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"invoiceTotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">2044.2</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"invoiceCurrency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"invoiceUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://..913b-2f9eb1731ce7/2017/01/2e898d14-e2fd-4d87-9403-75f1871c28b2.pdf"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"invoiceGuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"785bdaea-b575-4485-a886-b194af161a11"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"invoiceId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017_1_7"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"invoiceDate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1483871733325</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"invoiceBuyerName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ACME Corporation"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"invoiceTotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">2444.04</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"invoiceCurrency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"invoiceUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://..2-b0e1-4d4a-913b-2f9eb1731ce7/2017/01/785bdaea-b575-4485-a886-b194af161a11.pdf"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
+<pre class="highlight javascript"><code><span class="p">{</span>
+  <span class="s2">"query"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">"year"</span><span class="p">:</span> <span class="mi">2017</span>
+  <span class="p">},</span>
+  <span class="s2">"count"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+  <span class="s2">"list"</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">"invoiceGuid"</span><span class="p">:</span> <span class="s2">"2e898d14-e2fd-4d87-9403-75f1871c28b2"</span><span class="p">,</span>
+      <span class="s2">"invoiceId"</span><span class="p">:</span> <span class="s2">"2017_1_5"</span><span class="p">,</span>
+      <span class="s2">"invoiceDate"</span><span class="p">:</span> <span class="mi">1483871723354</span><span class="p">,</span>
+      <span class="s2">"invoiceBuyerName"</span><span class="p">:</span> <span class="s2">"ACME Corporation"</span><span class="p">,</span>
+      <span class="s2">"invoiceTotal"</span><span class="p">:</span> <span class="mf">2044.2</span><span class="p">,</span>
+      <span class="s2">"invoiceCurrency"</span><span class="p">:</span> <span class="s2">"USD"</span><span class="p">,</span>
+      <span class="s2">"invoiceUrl"</span><span class="p">:</span> <span class="s2">"https://..913b-2f9eb1731ce7/2017/01/2e898d14-e2fd-4d87-9403-75f1871c28b2.pdf"</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="s2">"invoiceGuid"</span><span class="p">:</span> <span class="s2">"785bdaea-b575-4485-a886-b194af161a11"</span><span class="p">,</span>
+      <span class="s2">"invoiceId"</span><span class="p">:</span> <span class="s2">"2017_1_7"</span><span class="p">,</span>
+      <span class="s2">"invoiceDate"</span><span class="p">:</span> <span class="mi">1483871733325</span><span class="p">,</span>
+      <span class="s2">"invoiceBuyerName"</span><span class="p">:</span> <span class="s2">"ACME Corporation"</span><span class="p">,</span>
+      <span class="s2">"invoiceTotal"</span><span class="p">:</span> <span class="mf">2444.04</span><span class="p">,</span>
+      <span class="s2">"invoiceCurrency"</span><span class="p">:</span> <span class="s2">"USD"</span><span class="p">,</span>
+      <span class="s2">"invoiceUrl"</span><span class="p">:</span> <span class="s2">"https://..2-b0e1-4d4a-913b-2f9eb1731ce7/2017/01/785bdaea-b575-4485-a886-b194af161a11.pdf"</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</code></pre><pre class="highlight csharp"><code>
+ <span class="k">public</span> <span class="k">class</span> <span class="nc">ListInvoiceResponse</span> <span class="p">{</span>
+
+    <span class="k">public</span> <span class="n">APIQueries</span><span class="p">.</span><span class="n">ListInvoiceQuery</span> <span class="n">Query</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="k">public</span> <span class="kt">int</span> <span class="n">Count</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="k">public</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">ListInvoiceResponseItem</span><span class="p">&gt;</span> <span class="n">List</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+
+<span class="p">}</span>
+
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">ListInvoiceResponseItem</span><span class="p">{</span>
+
+    <span class="k">public</span> <span class="kt">string</span> <span class="n">InvoiceGuid</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="k">public</span> <span class="kt">string</span> <span class="n">InvoiceId</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="k">public</span> <span class="kt">long</span> <span class="n">InvoiceDate</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="k">public</span> <span class="kt">string</span> <span class="n">InvoiceBuyerName</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="k">public</span> <span class="kt">decimal</span> <span class="n">InvoiceTotal</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="k">public</span> <span class="kt">string</span> <span class="n">InvoiceCurrency</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="k">public</span> <span class="kt">string</span> <span class="n">InvoiceUrl</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
 <p>Use this method to get a list of invoices within a specific period of time</p>
 
 <h3 id="http-request">HTTP Request</h3>
@@ -1107,17 +1259,22 @@ If `quarter` parameter is set, `month` and `day` will be discarded.
 </aside>
 
 <h2 id="invoice-get"><span style="color:green">invoice/get</span></h2>
-<pre class="highlight javascript"><code>
-<span class="kd">var</span> <span class="nx">queryJson</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">"invoiceGuid"</span><span class="p">:</span><span class="s2">"a657de6e-3afe-4af5-b95e-288d3df472d0"</span> <span class="p">};</span>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">queryJson</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">"invoiceGuid"</span><span class="p">:</span><span class="s2">"a657de6e-3afe-4af5-b95e-288d3df472d0"</span> <span class="p">};</span>
 <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
     <span class="na">method</span><span class="p">:</span> <span class="s1">'POST'</span><span class="p">,</span>
     <span class="na">url</span><span class="p">:</span> <span class="s1">'https://api.invoicing.services/invoice/get'</span><span class="p">,</span>
     <span class="na">data</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">queryJson</span><span class="p">),</span>
     <span class="p">...</span>
   <span class="p">});</span>
+</code></pre><pre class="highlight csharp"><code>
+<span class="n">InvoicingAPI</span> <span class="n">API</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">InvoicingAPI</span><span class="p">(</span><span class="n">MY_API_KEY</span><span class="p">);</span>
+<span class="n">Invoice</span> <span class="n">response</span> <span class="p">=</span> <span class="n">API</span><span class="p">.</span><span class="nf">GetInvoice</span><span class="p">(</span><span class="k">new</span> <span class="nf">GetInvoiceQuery</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">InvoiceGuid</span> <span class="p">=</span> <span class="s">"e234cd8f-4c66-4855-a5b4-23816fea6f23"</span>
+<span class="p">});</span>
+
 </code></pre>
 <blockquote>
-<p>The above command returns an Invoice JSON (check json example <a href="#invoice-json-example">here</a>)</p>
+<p>The above command returns an Invoice structure (check example <a href="#invoice-add">here</a>)</p>
 </blockquote>
 
 <p>Use this method to get a specific Invoice JSON formatted data.</p>
@@ -1142,9 +1299,61 @@ If `quarter` parameter is set, `month` and `day` will be discarded.
 <td>invoiceGuid</td>
 <td>string</td>
 <td>-</td>
-<td>invoice GUID</td>
+<td>Invoice GUID</td>
 </tr>
 </tbody></table>
+
+<h2 id="paypal-invoice-add"><span style="color:green">paypal/invoice/add</span></h2>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">paypalIPNMessage</span> <span class="o">=</span> <span class="s2">"mc_gross=23.37&amp;payer_id..."</span><span class="p">;</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+    <span class="na">method</span><span class="p">:</span> <span class="s1">'POST'</span><span class="p">,</span>
+    <span class="na">url</span><span class="p">:</span> <span class="s1">'https://api.invoicing.services/paypal/invoice/add'</span><span class="p">,</span>
+    <span class="na">data</span><span class="p">:</span> <span class="nx">paypalIPNMessage</span><span class="p">,</span>
+    <span class="p">...</span>
+  <span class="p">});</span>
+</code></pre><pre class="highlight csharp"><code>
+<span class="n">InvoicingAPI</span> <span class="n">API</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">InvoicingAPI</span><span class="p">(</span><span class="n">MY_API_KEY</span><span class="p">);</span>              
+<span class="n">AddInvoiceResponse</span> <span class="n">response</span> <span class="p">=</span> <span class="n">API</span><span class="p">.</span><span class="nf">AddPaypalIPNMessageInvoice</span><span class="p">(</span><span class="s">"mc_gross=23.37&amp;payer_id..."</span><span class="p">);</span>
+
+</code></pre>
+<blockquote>
+<p>The above command returns the same results as the <a href="#invoice-add">invoice/add</a> method.</p>
+</blockquote>
+
+<p>Use this method to create an Invoice from a PayPal IPN message.</p>
+
+<aside class="warning">
+This method do not use JSON for parameters.
+</aside>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST https://api.invoicing.services/paypal/invoice/add</code></p>
+
+<h3 id="parameters">Parameters</h3>
+
+<p>Just include the PayPal IPN message.</p>
+
+<aside class="info">
+Please note that PayPal IPN messages do not always include all the information you may require.
+<br/>We set some custom parameters you can add to initial IPN message.
+</aside>
+
+<table><thead>
+<tr>
+<th>Custom Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>item_price[x]</td>
+<td>decimal</td>
+<td>Add this parameter to display unit prices for your invoice items. For example: item_price1=19.00</td>
+</tr>
+</tbody></table>
+
+<p>If you need to use a custom parameter, just append it to the original message: <code class="prettyprint">mc_gross=23.37&amp;payer_id...ipn_track_id=79e3ddb1dd4b1&amp;item_price1=19.00</code>.</p>
 
           <h1 id="error-codes">Error Codes</h1>
 
@@ -1166,7 +1375,7 @@ If `quarter` parameter is set, `month` and `day` will be discarded.
 </tr>
 <tr>
 <td>403</td>
-<td>Forbidden &ndash; The requested object is hidden for administrators only</td>
+<td>Forbidden / Too Many Requests &ndash; Slow down!</td>
 </tr>
 <tr>
 <td>404</td>
@@ -1205,6 +1414,7 @@ If `quarter` parameter is set, `month` and `day` will be discarded.
       </div>
       <div class="dark-box">
           <div class="lang-selector">
+                <a href="#" data-language-name="csharp">.NET</a>
                 <a href="#" data-language-name="javascript">javascript</a>
           </div>
       </div>

@@ -7,7 +7,7 @@ Error Code | Meaning
 ---------- | -------
 400 | Bad Request -- Check your request parameters.
 401 | Unauthorized -- Check your API key
-403 | Forbidden -- The requested object is hidden for administrators only
+403 | Forbidden / Too Many Requests -- Slow down!
 404 | Not Found -- Your API key is valid but there is no related user on our servers.
 405 | Method Not Allowed -- You tried to access with an invalid method
 406 | Not Acceptable -- You requested a format that isn't json
