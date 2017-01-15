@@ -1303,58 +1303,6 @@ If `quarter` parameter is set, `month` and `day` will be discarded.
 </tr>
 </tbody></table>
 
-<h2 id="paypal-invoice-add"><span style="color:green">paypal/invoice/add</span></h2>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">paypalIPNMessage</span> <span class="o">=</span> <span class="s2">"mc_gross=23.37&amp;payer_id..."</span><span class="p">;</span>
-<span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
-    <span class="na">method</span><span class="p">:</span> <span class="s1">'POST'</span><span class="p">,</span>
-    <span class="na">url</span><span class="p">:</span> <span class="s1">'https://api.invoicing.services/paypal/invoice/add'</span><span class="p">,</span>
-    <span class="na">data</span><span class="p">:</span> <span class="nx">paypalIPNMessage</span><span class="p">,</span>
-    <span class="p">...</span>
-  <span class="p">});</span>
-</code></pre><pre class="highlight csharp"><code>
-<span class="n">InvoicingAPI</span> <span class="n">API</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">InvoicingAPI</span><span class="p">(</span><span class="n">MY_API_KEY</span><span class="p">);</span>              
-<span class="n">AddInvoiceResponse</span> <span class="n">response</span> <span class="p">=</span> <span class="n">API</span><span class="p">.</span><span class="nf">AddPaypalIPNMessageInvoice</span><span class="p">(</span><span class="s">"mc_gross=23.37&amp;payer_id..."</span><span class="p">);</span>
-
-</code></pre>
-<blockquote>
-<p>The above command returns the same results as the <a href="#invoice-add">invoice/add</a> method.</p>
-</blockquote>
-
-<p>Use this method to create an Invoice from a PayPal IPN message.</p>
-
-<aside class="warning">
-This method do not use JSON for parameters.
-</aside>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">POST https://api.invoicing.services/paypal/invoice/add</code></p>
-
-<h3 id="parameters">Parameters</h3>
-
-<p>Just include the PayPal IPN message.</p>
-
-<aside class="info">
-Please note that PayPal IPN messages do not always include all the information you may require.
-<br/>We set some custom parameters you can add to initial IPN message.
-</aside>
-
-<table><thead>
-<tr>
-<th>Custom Parameter</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>item_price[x]</td>
-<td>decimal</td>
-<td>Add this parameter to display unit prices for your invoice items. For example: item_price1=19.00</td>
-</tr>
-</tbody></table>
-
-<p>If you need to use a custom parameter, just append it to the original message: <code class="prettyprint">mc_gross=23.37&amp;payer_id...ipn_track_id=79e3ddb1dd4b1&amp;item_price1=19.00</code>.</p>
-
           <h1 id="error-codes">Error Codes</h1>
 
 <p>The invoicing.services API uses the following error codes:</p>
