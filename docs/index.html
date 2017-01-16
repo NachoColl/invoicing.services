@@ -867,7 +867,7 @@ Automatic invoice ids will be formatted as [year_month_number] where the last nu
 <td>taxes</td>
 <td>array</td>
 <td></td>
-<td>List of taxes for that item.</td>
+<td>List of Tax.</td>
 <td>[optional]</td>
 </tr>
 <tr>
@@ -893,7 +893,7 @@ Automatic invoice ids will be formatted as [year_month_number] where the last nu
 </tr>
 </tbody></table>
 
-<h3 id="item-taxes">Item Taxes</h3>
+<h3 id="tax">Tax</h3>
 
 <table><thead>
 <tr>
@@ -914,6 +914,12 @@ Automatic invoice ids will be formatted as [year_month_number] where the last nu
 <td>string</td>
 <td></td>
 <td>tax name (f.ex. VAT).</td>
+</tr>
+<tr>
+<td>taxTotal</td>
+<td>number</td>
+<td></td>
+<td>tax total.</td>
 </tr>
 </tbody></table>
 
@@ -939,7 +945,7 @@ Automatic invoice ids will be formatted as [year_month_number] where the last nu
 <td>taxTotals</td>
 <td>array</td>
 <td></td>
-<td>Invoice total taxes list.</td>
+<td>List of Tax.</td>
 <td>[optional]</td>
 </tr>
 <tr>
@@ -948,36 +954,6 @@ Automatic invoice ids will be formatted as [year_month_number] where the last nu
 <td></td>
 <td>Invoice Total.</td>
 <td></td>
-</tr>
-</tbody></table>
-
-<h3 id="invoice-total-taxes">Invoice Total Taxes</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>taxRate</td>
-<td>number</td>
-<td></td>
-<td>Tax rate.</td>
-</tr>
-<tr>
-<td>taxName</td>
-<td>string</td>
-<td></td>
-<td>Tax name.</td>
-</tr>
-<tr>
-<td>taxTotal</td>
-<td>number</td>
-<td></td>
-<td>Invoice related tax total.</td>
 </tr>
 </tbody></table>
 

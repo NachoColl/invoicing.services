@@ -568,7 +568,7 @@ taxIds | array | | List of tax codes.  | [optional]
 
 ### Actor (seller/buyer) Tax codes
 
-Parameter | Type | Default | Description 
+Parameter | Type | Default | Description
 --------- | -------  | ----------- | ----------- 
 name | string | | Tax name (f.ex. VA). | 
 value | string | | Tax Value (f.ex. BEB75884746). | 
@@ -580,33 +580,26 @@ Parameter | Type | Default | Description | Notes
 name | string | | Product/Service name.  | 
 description | string | | Description. | [optional]
 unitPrice | number | | Unit price. | 
-taxes | array | | List of taxes for that item. | [optional]
+taxes | array | | List of Tax. | [optional]
 quantity | number | | Quantity. | 
 itemSubTotalAmount | number | | Item total before taxes. | 
 itemTotalAmount | number | | Item total including all taxes. | 
 
-### Item Taxes
+### Tax
 
 Parameter | Type | Default | Description 
---------- | -------  | ----------- | ----------- 
+--------- | -------  | ----------- | -----------
 taxRate | number | | tax rate (f.ex. 20). 
 taxName | string | | tax name (f.ex. VAT). 
+taxTotal | number | | tax total.
 
 ### Invoice Totals
 
 Parameter | Type | Default | Description | Notes
 --------- | -------  | ----------- | ----------- | -------
 subtotal | number | | Invoice total without taxes.  | [optional]
-taxTotals | array | | Invoice total taxes list. | [optional]
+taxTotals | array | | List of Tax. | [optional]
 total | number | | Invoice Total.  | 
-
-### Invoice Total Taxes
-
-Parameter | Type | Default | Description 
---------- | -------  | ----------- | ----------- 
-taxRate | number | | Tax rate.  | 
-taxName | string | | Tax name.  | 
-taxTotal | number | | Invoice related tax total.  | 
 
 ### Invoice Notes
 
