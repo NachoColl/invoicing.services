@@ -615,20 +615,22 @@ line3 | string | | Third line.  |
 
 Use these parameters to change the default labels texts.
 
-Parameter | Type | Default | Description 
---------- | -------  | ----------- | ----------- 
-title | string | INVOICE # | 
-sellerLabel | string | Bill From | 
-SellerTaxIdsLabel | string | Tax ID(s) | 
-buyerLabel | string | Bill To | 
-BuyerTaxIdsLabel | string | Tax ID(s) | 
-itemsListItem | string | Item | 
-itemsListPrice | string | Price | 
-itemsListQty | string | Qty | 
-itemsListSubtotal | string | Subtotal | 
-itemsListTotal | string | Total | 
-subtotal | string | Subtotal | 
-total | string | Total | 
+Parameter | Type | Default 
+--------- | -------  | ----------- 
+title | string | INVOICE # 
+invoiceNumber | string | Invoice Number 
+invoiceDate | string | Invoice Date 
+sellerLabel | string | Bill From 
+SellerTaxIdsLabel | string | Tax ID(s) 
+buyerLabel | string | Bill To 
+BuyerTaxIdsLabel | string | Tax ID(s)
+itemsListItem | string | Item 
+itemsListPrice | string | Price  
+itemsListQty | string | Qty 
+itemsListSubtotal | string | Subtotal
+itemsListTotal | string | Total 
+subtotal | string | Subtotal 
+total | string | Total 
 
 ### Invoice Colors
 
