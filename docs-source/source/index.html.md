@@ -153,7 +153,7 @@ The `Content-Type` header attribute must be set to `application/json`.
 
 AddInvoiceResponse response = API.AddInvoice(new Model.Invoice() {
 	...
-	Date = Utils.Timestamp.CurrentTimeMillis();,
+	Date = Utils.Timestamp.CurrentTimeMillis(),
 	...
 	UnitPrice = 20.01m,
 	...
@@ -183,6 +183,73 @@ Invoice country code (f.ex. `US`) is used to format currency and date values (an
 An example.
 
 You may need to use the EUR currency code and display values using the French format (f.ex. 24,99 EUR). In that case you must set `countryCode` to `FR` value.
+
+
+# Available Templates
+
+
+Invoice template is selected by setting the `templateNumber` parameter when calling the `invoice/add` API method. 
+
+<aside class="notice">
+Change invoice colors using the colors parameters to meet your requirements.
+</aside>
+
+You can search for color codes on [Colors Picker](http://www.w3schools.com/colors/colors_picker.asp) website. If you want to test how your Invoices look, remember to set the `dummy` parameter on invoice creation.
+
+<aside class="warning">
+If no template is selected, the default template is used.
+</aside>
+
+## Default Template (1).
+
+```csharp
+
+AddInvoiceResponse response = API.AddInvoice(new Model.Invoice() {
+	...
+	TemplateNumber = 1,
+	...
+	Colors = new Colors() {
+		Color1 = "#766755",
+		Color2 = "#e62e00",
+		Color3 = "#33ccff",
+		Color4 = "#99ffcc"
+	}
+	
+ });
+ 
+ 
+```
+
+<img src="images/Template1.JPG" />
+
+## Template Number 2.
+
+```csharp
+
+AddInvoiceResponse response = API.AddInvoice(new Model.Invoice() {
+	...
+	TemplateNumber = 2,
+	...
+	Colors = new Colors() {
+		Color1 = "#766755",
+		Color2 = "#e62e00",
+		Color3 = "#33ccff",
+		Color4 = "#99ffcc",
+		Color5 = "#cc33ff"
+	}
+	
+ });
+ 
+ 
+```
+<aside class="notice">
+This template includes your logo image. 
+</aside>
+
+Just update your `Bill To` data using the `seller/update` API method including an Url reference to your logo image. The image will then be saved on our servers and used on this template.
+
+
+<img src="images/Template2.JPG" />
 
 # Seller API
 

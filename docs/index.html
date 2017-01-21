@@ -234,7 +234,7 @@ You must replace <code>my-api-key</code> with your personal API key.
 
 <span class="n">AddInvoiceResponse</span> <span class="n">response</span> <span class="p">=</span> <span class="n">API</span><span class="p">.</span><span class="nf">AddInvoice</span><span class="p">(</span><span class="k">new</span> <span class="n">Model</span><span class="p">.</span><span class="nf">Invoice</span><span class="p">()</span> <span class="p">{</span>
     <span class="p">...</span>
-    <span class="n">Date</span> <span class="p">=</span> <span class="n">Utils</span><span class="p">.</span><span class="n">Timestamp</span><span class="p">.</span><span class="nf">CurrentTimeMillis</span><span class="p">();,</span>
+    <span class="n">Date</span> <span class="p">=</span> <span class="n">Utils</span><span class="p">.</span><span class="n">Timestamp</span><span class="p">.</span><span class="nf">CurrentTimeMillis</span><span class="p">(),</span>
     <span class="p">...</span>
     <span class="n">UnitPrice</span> <span class="p">=</span> <span class="m">20.01</span><span class="n">m</span><span class="p">,</span>
     <span class="p">...</span>
@@ -263,6 +263,65 @@ You must replace <code>my-api-key</code> with your personal API key.
 <p>An example.</p>
 
 <p>You may need to use the EUR currency code and display values using the French format (f.ex. 24,99 EUR). In that case you must set <code class="prettyprint">countryCode</code> to <code class="prettyprint">FR</code> value.</p>
+
+<h1 id="available-templates">Available Templates</h1>
+
+<p>Invoice template is selected by setting the <code class="prettyprint">templateNumber</code> parameter when calling the <code class="prettyprint">invoice/add</code> API method. </p>
+
+<aside class="notice">
+Change invoice colors using the colors parameters to meet your requirements.
+</aside>
+
+<p>You can search for color codes on <a href="http://www.w3schools.com/colors/colors_picker.asp">Colors Picker</a> website. If you want to test how your Invoices look, remember to set the <code class="prettyprint">dummy</code> parameter on invoice creation.</p>
+
+<aside class="warning">
+If no template is selected, the default template is used.
+</aside>
+
+<h2 id="default-template-1">Default Template (1).</h2>
+<pre class="highlight csharp"><code>
+<span class="n">AddInvoiceResponse</span> <span class="n">response</span> <span class="p">=</span> <span class="n">API</span><span class="p">.</span><span class="nf">AddInvoice</span><span class="p">(</span><span class="k">new</span> <span class="n">Model</span><span class="p">.</span><span class="nf">Invoice</span><span class="p">()</span> <span class="p">{</span>
+    <span class="p">...</span>
+    <span class="n">TemplateNumber</span> <span class="p">=</span> <span class="m">1</span><span class="p">,</span>
+    <span class="p">...</span>
+    <span class="n">Colors</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Colors</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">Color1</span> <span class="p">=</span> <span class="s">"#766755"</span><span class="p">,</span>
+        <span class="n">Color2</span> <span class="p">=</span> <span class="s">"#e62e00"</span><span class="p">,</span>
+        <span class="n">Color3</span> <span class="p">=</span> <span class="s">"#33ccff"</span><span class="p">,</span>
+        <span class="n">Color4</span> <span class="p">=</span> <span class="s">"#99ffcc"</span>
+    <span class="p">}</span>
+
+ <span class="p">});</span>
+
+
+</code></pre>
+<p><img src="images/Template1.JPG" /></p>
+
+<h2 id="template-number-2">Template Number 2.</h2>
+<pre class="highlight csharp"><code>
+<span class="n">AddInvoiceResponse</span> <span class="n">response</span> <span class="p">=</span> <span class="n">API</span><span class="p">.</span><span class="nf">AddInvoice</span><span class="p">(</span><span class="k">new</span> <span class="n">Model</span><span class="p">.</span><span class="nf">Invoice</span><span class="p">()</span> <span class="p">{</span>
+    <span class="p">...</span>
+    <span class="n">TemplateNumber</span> <span class="p">=</span> <span class="m">2</span><span class="p">,</span>
+    <span class="p">...</span>
+    <span class="n">Colors</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Colors</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">Color1</span> <span class="p">=</span> <span class="s">"#766755"</span><span class="p">,</span>
+        <span class="n">Color2</span> <span class="p">=</span> <span class="s">"#e62e00"</span><span class="p">,</span>
+        <span class="n">Color3</span> <span class="p">=</span> <span class="s">"#33ccff"</span><span class="p">,</span>
+        <span class="n">Color4</span> <span class="p">=</span> <span class="s">"#99ffcc"</span><span class="p">,</span>
+        <span class="n">Color5</span> <span class="p">=</span> <span class="s">"#cc33ff"</span>
+    <span class="p">}</span>
+
+ <span class="p">});</span>
+
+
+</code></pre>
+<aside class="notice">
+This template includes your logo image. 
+</aside>
+
+<p>Just update your <code class="prettyprint">Bill To</code> data using the <code class="prettyprint">seller/update</code> API method including an Url reference to your logo image. The image will then be saved on our servers and used on this template.</p>
+
+<p><img src="images/Template2.JPG" /></p>
 
 <h1 id="seller-api">Seller API</h1>
 
