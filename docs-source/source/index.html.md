@@ -242,11 +242,9 @@ AddInvoiceResponse response = API.AddInvoice(new Model.Invoice() {
  
  
 ```
-<aside class="notice">
-This template includes your logo image. 
-</aside>
+If you want to include your company logo image, you must update your `Bill To` data using the `seller/update` API method including an Url reference to your logo image. 
 
-Just update your `Bill To` data using the `seller/update` API method including an Url reference to your logo image. The image will then be saved on our servers and used on this template.
+The image will then be saved on our servers and used on this template.
 
 
 <img src="images/Template2.JPG" />
