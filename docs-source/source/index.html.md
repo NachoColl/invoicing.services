@@ -80,6 +80,15 @@ Invoices are stored on [Amazon Web Services S3](https://aws.amazon.com/s3/) and 
 
 The directory where your invoices are stored cannot be listed by other users, but anyone with an invoice link can access the PDF file.
 
+## Dashboard
+
+By using invoicing.service API you will also get some useful sales reports.
+
+<aside class="notice">
+Remember to include the countryCode parameter if you want to get sales by country.
+</aside>
+
+<img src="images/Dashboard.JPG" />
 
 # API endpoint
 
