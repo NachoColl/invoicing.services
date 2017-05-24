@@ -186,9 +186,9 @@ Remember to include the countryCode parameter if you want to get sales by countr
 
 <h1 id="api-endpoint">API endpoint</h1>
 
-<p>To call <strong>invoicing.services</strong> API methods, use <strong>https://api.incoicing.services</strong> API endpoint .</p>
+<p>To call <strong>invoicing.services</strong> API methods, use <strong>https://api.invoicing.services/v2</strong> API endpoint .</p>
 
-<p>For example, to create a new Invoice, you call the metod <code class="prettyprint">https://api.invoicing.services/invoice/add</code>.</p>
+<p>For example, to create a new Invoice, you call the metod <code class="prettyprint">https://api.invoicing.services/v2/invoice/add</code>.</p>
 
 <h1 id="authentication">Authentication</h1>
 <pre class="highlight javascript"><code><span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
@@ -274,62 +274,64 @@ You must replace <code>my-api-key</code> with your personal API key.
 
 <p>You may need to use the EUR currency code and display values using the French format (f.ex. 24,99 EUR). In that case you must set <code class="prettyprint">countryCode</code> to <code class="prettyprint">FR</code> value.</p>
 
-<h1 id="available-templates">Available Templates</h1>
+<h1 id="api-calls-response">API Calls Response</h1>
 
-<p>Invoice template is selected by setting the <code class="prettyprint">templateNumber</code> parameter when calling the <code class="prettyprint">invoice/add</code> API method. </p>
+<blockquote>
+<p>API call <code class="prettyprint">seller/get</code> response example</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+ </span><span class="nt">"statusCode"</span><span class="p">:</span><span class="mi">200</span><span class="p">,</span><span class="w">
+ </span><span class="nt">"statusMessage"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+ </span><span class="nt">"info"</span><span class="p">:</span><span class="w">  </span><span class="s2">"{
+    \"id\":\"543433243\",
+    \"name\":\"ACME Corporation\",
+    \"line1\":\"Rock Heaven\",
+    \"line2\":\"Toons\",
+    \"line3\":\"USA\"
+    \"logoUrl\":\"https://s3-us-west-2.amazonaws.com/temp.invoicing.services/ACME.jpg\"
+  }"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>API call error response example</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+ </span><span class="nt">"statusCode"</span><span class="p">:</span><span class="mi">404</span><span class="p">,</span><span class="w">
+ </span><span class="nt">"statusMessage"</span><span class="p">:</span><span class="s2">"incorrect parameters - user not found"</span><span class="p">,</span><span class="w">
+ </span><span class="nt">"info"</span><span class="p">:</span><span class="w">  </span><span class="s2">""</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>When calling the API, you can get an <a href="https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol">HTTP</a> layer transport error, that is, an error that has ocurried before the related API code is executed (e.g. 503, Service Unavailable), or a <em>controlled error</em>, meaning an error that is related to the parameters values you send (e.g. 404, not found - when no data is found for your query). By using this strategy, you will be able to catch and differentiate all kind of API call errors easily.</p>
 
-<aside class="notice">
-Change invoice colors using the colors parameters to meet your requirements.
-</aside>
+<p><br/>
+When no transport layer error is detected, all the API calls will include the next message in the BODY part of the response:</p>
 
-<p>You can search for color codes on <a href="http://www.w3schools.com/colors/colors_picker.asp">Colors Picker</a> website. If you want to test how your Invoices look, remember to set the <code class="prettyprint">dummy</code> parameter on invoice creation.</p>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>statusCode</td>
+<td>number</td>
+<td>The api call result code, using <a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes">HTTP status codes values</a> (e.g. 200 indicates no error).</td>
+</tr>
+<tr>
+<td>statusMessage</td>
+<td>string</td>
+<td>The status code related message.</td>
+</tr>
+<tr>
+<td>info</td>
+<td>string*</td>
+<td>The related requested information.</td>
+</tr>
+</tbody></table>
 
-<aside class="warning">
-If no template is selected, the default template is used.
-</aside>
-
-<h2 id="default-template-1">Default Template (1).</h2>
-<pre class="highlight csharp"><code>
-<span class="n">AddInvoiceResponse</span> <span class="n">response</span> <span class="p">=</span> <span class="n">API</span><span class="p">.</span><span class="nf">AddInvoice</span><span class="p">(</span><span class="k">new</span> <span class="n">Model</span><span class="p">.</span><span class="nf">Invoice</span><span class="p">()</span> <span class="p">{</span>
-    <span class="p">...</span>
-    <span class="n">TemplateNumber</span> <span class="p">=</span> <span class="m">1</span><span class="p">,</span>
-    <span class="p">...</span>
-    <span class="n">Colors</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Colors</span><span class="p">()</span> <span class="p">{</span>
-        <span class="n">Color1</span> <span class="p">=</span> <span class="s">"#766755"</span><span class="p">,</span>
-        <span class="n">Color2</span> <span class="p">=</span> <span class="s">"#e62e00"</span><span class="p">,</span>
-        <span class="n">Color3</span> <span class="p">=</span> <span class="s">"#33ccff"</span><span class="p">,</span>
-        <span class="n">Color4</span> <span class="p">=</span> <span class="s">"#99ffcc"</span>
-    <span class="p">}</span>
-
- <span class="p">});</span>
-
-
-</code></pre>
-<p><img src="images/Template1.JPG" /></p>
-
-<h2 id="template-number-2">Template Number 2.</h2>
-<pre class="highlight csharp"><code>
-<span class="n">AddInvoiceResponse</span> <span class="n">response</span> <span class="p">=</span> <span class="n">API</span><span class="p">.</span><span class="nf">AddInvoice</span><span class="p">(</span><span class="k">new</span> <span class="n">Model</span><span class="p">.</span><span class="nf">Invoice</span><span class="p">()</span> <span class="p">{</span>
-    <span class="p">...</span>
-    <span class="n">TemplateNumber</span> <span class="p">=</span> <span class="m">2</span><span class="p">,</span>
-    <span class="p">...</span>
-    <span class="n">Colors</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Colors</span><span class="p">()</span> <span class="p">{</span>
-        <span class="n">Color1</span> <span class="p">=</span> <span class="s">"#766755"</span><span class="p">,</span>
-        <span class="n">Color2</span> <span class="p">=</span> <span class="s">"#e62e00"</span><span class="p">,</span>
-        <span class="n">Color3</span> <span class="p">=</span> <span class="s">"#33ccff"</span><span class="p">,</span>
-        <span class="n">Color4</span> <span class="p">=</span> <span class="s">"#99ffcc"</span><span class="p">,</span>
-        <span class="n">Color5</span> <span class="p">=</span> <span class="s">"#cc33ff"</span>
-    <span class="p">}</span>
-
- <span class="p">});</span>
-
-
-</code></pre>
-<p>If you want to include your company logo image, you must update your <code class="prettyprint">Bill To</code> data using the <code class="prettyprint">seller/update</code> API method including an Url reference to your logo image. </p>
-
-<p>The image will then be saved on our servers and used on this template.</p>
-
-<p><img src="images/Template2.JPG" /></p>
+<p><br/><br/>
+Please take note that the info result parameter may be just a simple text or a more complex json schema (check the examples on the right).</p>
 
 <h1 id="seller-api">Seller API</h1>
 
@@ -353,7 +355,7 @@ If no template is selected, the default template is used.
 
 <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
     <span class="na">method</span><span class="p">:</span> <span class="s1">'POST'</span><span class="p">,</span>
-    <span class="na">url</span><span class="p">:</span> <span class="s1">'https://api.invoicing.services/seller/update'</span><span class="p">,</span>
+    <span class="na">url</span><span class="p">:</span> <span class="s1">'https://api.invoicing.services/v2/seller/update'</span><span class="p">,</span>
     <span class="na">data</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">sellerJson</span><span class="p">),</span>
     <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
       <span class="s1">'Content-Type'</span><span class="p">:</span> <span class="s1">'application/json'</span><span class="p">,</span>
@@ -394,7 +396,7 @@ You can also sing-in to your account to setup that info from the web.
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">POST https://api.invoicing.services/seller/update</code></p>
+<p><code class="prettyprint">POST https://api.invoicing.services/v2/seller/update</code></p>
 
 <h3 id="request-parameters">Request Parameters</h3>
 
@@ -476,7 +478,7 @@ You can also sing-in to your account to setup that info from the web.
 <h2 id="seller-get"><span style="color:green">seller/get</span></h2>
 <pre class="highlight javascript"><code><span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
     <span class="na">method</span><span class="p">:</span> <span class="s1">'POST'</span><span class="p">,</span>
-    <span class="na">url</span><span class="p">:</span> <span class="s1">'https://api.invoicing.services/seller/get'</span><span class="p">,</span>
+    <span class="na">url</span><span class="p">:</span> <span class="s1">'https://api.invoicing.services/v2/seller/get'</span><span class="p">,</span>
     <span class="na">data</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
     <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
       <span class="s1">'Content-Type'</span><span class="p">:</span> <span class="s1">'application/json'</span><span class="p">,</span>
@@ -489,7 +491,7 @@ You can also sing-in to your account to setup that info from the web.
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">POST https://api.invoicing.services/seller/get</code></p>
+<p><code class="prettyprint">POST https://api.invoicing.services/v2/seller/get</code></p>
 
 <h3 id="request-parameters">Request Parameters</h3>
 
@@ -502,7 +504,7 @@ You can also sing-in to your account to setup that info from the web.
 <h2 id="invoice-add"><span style="color:green">invoice/add</span></h2>
 <pre class="highlight javascript"><code><span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
     <span class="na">method</span><span class="p">:</span> <span class="s1">'POST'</span><span class="p">,</span>
-    <span class="na">url</span><span class="p">:</span> <span class="s1">'https://api.invoicing.services/invoice/add'</span><span class="p">,</span>
+    <span class="na">url</span><span class="p">:</span> <span class="s1">'https://api.invoicing.services/v2/invoice/add'</span><span class="p">,</span>
     <span class="na">data</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">invoiceJson</span><span class="p">),</span>
     <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
       <span class="s1">'Content-Type'</span><span class="p">:</span> <span class="s1">'application/json'</span><span class="p">,</span>
@@ -706,7 +708,7 @@ You can also sing-in to your account to setup that info from the web.
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">POST https://api.invoicing.services/invoice/add</code></p>
+<p><code class="prettyprint">POST https://api.invoicing.services/v2/invoice/add</code></p>
 
 <h3 id="invoice-ids">Invoice Ids</h3>
 
@@ -1176,7 +1178,7 @@ Automatic invoice ids will be formatted as [year_month_number] where the last nu
 <span class="kd">var</span> <span class="nx">queryJson</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">"year"</span><span class="p">:</span><span class="mi">2017</span> <span class="p">};</span>
 <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
     <span class="na">method</span><span class="p">:</span> <span class="s1">'POST'</span><span class="p">,</span>
-    <span class="na">url</span><span class="p">:</span> <span class="s1">'https://api.invoicing.services/invoice/list'</span><span class="p">,</span>
+    <span class="na">url</span><span class="p">:</span> <span class="s1">'https://api.invoicing.services/v2/invoice/list'</span><span class="p">,</span>
     <span class="na">data</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">queryJson</span><span class="p">),</span>
     <span class="p">...</span>
   <span class="p">});</span>
@@ -1241,7 +1243,7 @@ Automatic invoice ids will be formatted as [year_month_number] where the last nu
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">POST https://api.invoicing.services/invoice/list</code></p>
+<p><code class="prettyprint">POST https://api.invoicing.services/v2/invoice/list</code></p>
 
 <h3 id="request-parameters">Request Parameters</h3>
 
@@ -1300,7 +1302,7 @@ If `quarter` parameter is set, `month` and `day` will be discarded.
 <pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">queryJson</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">"invoiceGuid"</span><span class="p">:</span><span class="s2">"a657de6e-3afe-4af5-b95e-288d3df472d0"</span> <span class="p">};</span>
 <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
     <span class="na">method</span><span class="p">:</span> <span class="s1">'POST'</span><span class="p">,</span>
-    <span class="na">url</span><span class="p">:</span> <span class="s1">'https://api.invoicing.services/invoice/get'</span><span class="p">,</span>
+    <span class="na">url</span><span class="p">:</span> <span class="s1">'https://api.invoicing.services/v2/invoice/get'</span><span class="p">,</span>
     <span class="na">data</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">queryJson</span><span class="p">),</span>
     <span class="p">...</span>
   <span class="p">});</span>
@@ -1319,7 +1321,7 @@ If `quarter` parameter is set, `month` and `day` will be discarded.
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">POST https://api.invoicing.services/invoice/get</code></p>
+<p><code class="prettyprint">POST https://api.invoicing.services/v2/invoice/get</code></p>
 
 <h3 id="request-parameters">Request Parameters</h3>
 
@@ -1340,6 +1342,63 @@ If `quarter` parameter is set, `month` and `day` will be discarded.
 <td>Invoice GUID</td>
 </tr>
 </tbody></table>
+
+<h1 id="available-templates">Available Templates</h1>
+
+<p>Invoice template is selected by setting the <code class="prettyprint">templateNumber</code> parameter when calling the <code class="prettyprint">invoice/add</code> API method. </p>
+
+<aside class="notice">
+Change invoice colors using the colors parameters to meet your requirements.
+</aside>
+
+<p>You can search for color codes on <a href="http://www.w3schools.com/colors/colors_picker.asp">Colors Picker</a> website. If you want to test how your Invoices look, remember to set the <code class="prettyprint">dummy</code> parameter on invoice creation.</p>
+
+<aside class="warning">
+If no template is selected, the default template is used.
+</aside>
+
+<h2 id="default-template-1">Default Template (1).</h2>
+<pre class="highlight csharp"><code>
+<span class="n">AddInvoiceResponse</span> <span class="n">response</span> <span class="p">=</span> <span class="n">API</span><span class="p">.</span><span class="nf">AddInvoice</span><span class="p">(</span><span class="k">new</span> <span class="n">Model</span><span class="p">.</span><span class="nf">Invoice</span><span class="p">()</span> <span class="p">{</span>
+    <span class="p">...</span>
+    <span class="n">TemplateNumber</span> <span class="p">=</span> <span class="m">1</span><span class="p">,</span>
+    <span class="p">...</span>
+    <span class="n">Colors</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Colors</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">Color1</span> <span class="p">=</span> <span class="s">"#766755"</span><span class="p">,</span>
+        <span class="n">Color2</span> <span class="p">=</span> <span class="s">"#e62e00"</span><span class="p">,</span>
+        <span class="n">Color3</span> <span class="p">=</span> <span class="s">"#33ccff"</span><span class="p">,</span>
+        <span class="n">Color4</span> <span class="p">=</span> <span class="s">"#99ffcc"</span>
+    <span class="p">}</span>
+
+ <span class="p">});</span>
+
+
+</code></pre>
+<p><img src="images/Template1.JPG" /></p>
+
+<h2 id="template-number-2">Template Number 2.</h2>
+<pre class="highlight csharp"><code>
+<span class="n">AddInvoiceResponse</span> <span class="n">response</span> <span class="p">=</span> <span class="n">API</span><span class="p">.</span><span class="nf">AddInvoice</span><span class="p">(</span><span class="k">new</span> <span class="n">Model</span><span class="p">.</span><span class="nf">Invoice</span><span class="p">()</span> <span class="p">{</span>
+    <span class="p">...</span>
+    <span class="n">TemplateNumber</span> <span class="p">=</span> <span class="m">2</span><span class="p">,</span>
+    <span class="p">...</span>
+    <span class="n">Colors</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Colors</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">Color1</span> <span class="p">=</span> <span class="s">"#766755"</span><span class="p">,</span>
+        <span class="n">Color2</span> <span class="p">=</span> <span class="s">"#e62e00"</span><span class="p">,</span>
+        <span class="n">Color3</span> <span class="p">=</span> <span class="s">"#33ccff"</span><span class="p">,</span>
+        <span class="n">Color4</span> <span class="p">=</span> <span class="s">"#99ffcc"</span><span class="p">,</span>
+        <span class="n">Color5</span> <span class="p">=</span> <span class="s">"#cc33ff"</span>
+    <span class="p">}</span>
+
+ <span class="p">});</span>
+
+
+</code></pre>
+<p>If you want to include your company logo image, you must update your <code class="prettyprint">Bill To</code> data using the <code class="prettyprint">seller/update</code> API method including an Url reference to your logo image. </p>
+
+<p>The image will then be saved on our servers and used on this template.</p>
+
+<p><img src="images/Template2.JPG" /></p>
 
           <h1 id="error-codes">Error Codes</h1>
 

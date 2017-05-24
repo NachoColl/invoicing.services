@@ -92,9 +92,9 @@ Remember to include the countryCode parameter if you want to get sales by countr
 
 # API endpoint
 
-To call **invoicing.services** API methods, use **https://api.incoicing.services** API endpoint .
+To call **invoicing.services** API methods, use **https://api.invoicing.services/v2** API endpoint .
 
-For example, to create a new Invoice, you call the metod `https://api.invoicing.services/invoice/add`.
+For example, to create a new Invoice, you call the metod `https://api.invoicing.services/v2/invoice/add`.
 
 # Authentication
 
@@ -194,69 +194,52 @@ An example.
 You may need to use the EUR currency code and display values using the French format (f.ex. 24,99 EUR). In that case you must set `countryCode` to `FR` value.
 
 
-# Available Templates
+# API Calls Response
+
+> API call `seller/get` response example
 
 
-Invoice template is selected by setting the `templateNumber` parameter when calling the `invoice/add` API method. 
-
-<aside class="notice">
-Change invoice colors using the colors parameters to meet your requirements.
-</aside>
-
-You can search for color codes on [Colors Picker](http://www.w3schools.com/colors/colors_picker.asp) website. If you want to test how your Invoices look, remember to set the `dummy` parameter on invoice creation.
-
-<aside class="warning">
-If no template is selected, the default template is used.
-</aside>
-
-## Default Template (1).
-
-```csharp
-
-AddInvoiceResponse response = API.AddInvoice(new Model.Invoice() {
-	...
-	TemplateNumber = 1,
-	...
-	Colors = new Colors() {
-		Color1 = "#766755",
-		Color2 = "#e62e00",
-		Color3 = "#33ccff",
-		Color4 = "#99ffcc"
-	}
-	
- });
- 
- 
+```
+{
+ "statusCode":200,
+ "statusMessage":"",
+ "info":  "{
+    \"id\":\"543433243\",
+    \"name\":\"ACME Corporation\",
+    \"line1\":\"Rock Heaven\",
+    \"line2\":\"Toons\",
+    \"line3\":\"USA\"
+    \"logoUrl\":\"https://s3-us-west-2.amazonaws.com/temp.invoicing.services/ACME.jpg\"
+  }"
+}
 ```
 
-<img src="images/Template1.JPG" />
+> API call error response example
 
-## Template Number 2.
 
-```csharp
-
-AddInvoiceResponse response = API.AddInvoice(new Model.Invoice() {
-	...
-	TemplateNumber = 2,
-	...
-	Colors = new Colors() {
-		Color1 = "#766755",
-		Color2 = "#e62e00",
-		Color3 = "#33ccff",
-		Color4 = "#99ffcc",
-		Color5 = "#cc33ff"
-	}
-	
- });
- 
- 
 ```
-If you want to include your company logo image, you must update your `Bill To` data using the `seller/update` API method including an Url reference to your logo image. 
+{
+ "statusCode":404,
+ "statusMessage":"incorrect parameters - user not found",
+ "info":  ""
+}
+```
 
-The image will then be saved on our servers and used on this template.
+
+When calling the API, you can get an [HTTP](https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol) layer transport error, that is, an error that has ocurried before the related API code is executed (e.g. 503, Service Unavailable), or a *controlled error*, meaning an error that is related to the parameters values you send (e.g. 404, not found - when no data is found for your query). By using this strategy, you will be able to catch and differentiate all kind of API call errors easily.
+
+<br/>
+When no transport layer error is detected, all the API calls will include the next message in the BODY part of the response:
 
 
-<img src="images/Template2.JPG" />
+Parameter | Type | Description 
+--------- | -------  | ----------- 
+statusCode | number | The api call result code, using [HTTP status codes values](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes) (e.g. 200 indicates no error).
+statusMessage | string | The status code related message.
+info | string* | The related requested information.
+<br/><br/>
+Please take note that the info result parameter may be just a simple text or a more complex json schema (check the examples on the right).
+
 
 # Seller API
 
@@ -280,7 +263,7 @@ var sellerJson = {
 
 $.ajax({
     method: 'POST',
-    url: 'https://api.invoicing.services/seller/update',
+    url: 'https://api.invoicing.services/v2/seller/update',
     data: JSON.stringify(sellerJson),
     headers: {
       'Content-Type': 'application/json',
@@ -325,7 +308,7 @@ You can also sing-in to your account to setup that info from the web.
 
 ### HTTP Request
 
-`POST https://api.invoicing.services/seller/update`
+`POST https://api.invoicing.services/v2/seller/update`
 
 ### Request Parameters
 
@@ -354,7 +337,7 @@ value | string | Tax Value (f.ex. BEB75884746).
 ```javascript
 $.ajax({
     method: 'POST',
-    url: 'https://api.invoicing.services/seller/get',
+    url: 'https://api.invoicing.services/v2/seller/get',
     data: null,
     headers: {
       'Content-Type': 'application/json',
@@ -369,7 +352,7 @@ Use this method to get your `Bill From` default values.
 
 ### HTTP Request
 
-`POST https://api.invoicing.services/seller/get`
+`POST https://api.invoicing.services/v2/seller/get`
 
 ### Request Parameters
 
@@ -382,7 +365,7 @@ This call does not need any parameter.
 ```javascript
 $.ajax({
     method: 'POST',
-    url: 'https://api.invoicing.services/invoice/add',
+    url: 'https://api.invoicing.services/v2/invoice/add',
     data: JSON.stringify(invoiceJson),
     headers: {
       'Content-Type': 'application/json',
@@ -597,7 +580,7 @@ Use this method to create a new invoice.
 
 ### HTTP Request
 
-`POST https://api.invoicing.services/invoice/add`
+`POST https://api.invoicing.services/v2/invoice/add`
 
 ### Invoice Ids
 
@@ -730,7 +713,7 @@ color3 | string | "#424242" | Template color.
 var queryJson = { "year":2017 };
 $.ajax({
     method: 'POST',
-    url: 'https://api.invoicing.services/invoice/list',
+    url: 'https://api.invoicing.services/v2/invoice/list',
     data: JSON.stringify(queryJson),
     ...
   });
@@ -803,7 +786,7 @@ Use this method to get a list of invoices within a specific period of time
 
 ### HTTP Request
 
-`POST https://api.invoicing.services/invoice/list`
+`POST https://api.invoicing.services/v2/invoice/list`
 
 ### Request Parameters
 
@@ -834,7 +817,7 @@ If `quarter` parameter is set, `month` and `day` will be discarded.
 var queryJson = { "invoiceGuid":"a657de6e-3afe-4af5-b95e-288d3df472d0" };
 $.ajax({
     method: 'POST',
-    url: 'https://api.invoicing.services/invoice/get',
+    url: 'https://api.invoicing.services/v2/invoice/get',
     data: JSON.stringify(queryJson),
     ...
   });
@@ -857,7 +840,7 @@ Use this method to get a specific Invoice JSON formatted data.
 
 ### HTTP Request
 
-`POST https://api.invoicing.services/invoice/get`
+`POST https://api.invoicing.services/v2/invoice/get`
 
 ### Request Parameters
 
@@ -868,3 +851,69 @@ Parameter | Type | Default | Description
 --------- | -------  | ----------- | ----------- 
 invoiceGuid | string | - | Invoice GUID 
 
+
+
+
+# Available Templates
+
+
+Invoice template is selected by setting the `templateNumber` parameter when calling the `invoice/add` API method. 
+
+<aside class="notice">
+Change invoice colors using the colors parameters to meet your requirements.
+</aside>
+
+You can search for color codes on [Colors Picker](http://www.w3schools.com/colors/colors_picker.asp) website. If you want to test how your Invoices look, remember to set the `dummy` parameter on invoice creation.
+
+<aside class="warning">
+If no template is selected, the default template is used.
+</aside>
+
+## Default Template (1).
+
+```csharp
+
+AddInvoiceResponse response = API.AddInvoice(new Model.Invoice() {
+	...
+	TemplateNumber = 1,
+	...
+	Colors = new Colors() {
+		Color1 = "#766755",
+		Color2 = "#e62e00",
+		Color3 = "#33ccff",
+		Color4 = "#99ffcc"
+	}
+	
+ });
+ 
+ 
+```
+
+<img src="images/Template1.JPG" />
+
+## Template Number 2.
+
+```csharp
+
+AddInvoiceResponse response = API.AddInvoice(new Model.Invoice() {
+	...
+	TemplateNumber = 2,
+	...
+	Colors = new Colors() {
+		Color1 = "#766755",
+		Color2 = "#e62e00",
+		Color3 = "#33ccff",
+		Color4 = "#99ffcc",
+		Color5 = "#cc33ff"
+	}
+	
+ });
+ 
+ 
+```
+If you want to include your company logo image, you must update your `Bill To` data using the `seller/update` API method including an Url reference to your logo image. 
+
+The image will then be saved on our servers and used on this template.
+
+
+<img src="images/Template2.JPG" />
