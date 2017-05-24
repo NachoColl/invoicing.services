@@ -1,5 +1,5 @@
 ---
-title: API Reference
+title: Invoicing API Docs
 
 language_tabs:
  - csharp: .NET
