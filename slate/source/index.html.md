@@ -18,6 +18,10 @@ search: false
 
 # Introduction
 
+Welcome to [invoicing.services](https://invoicing.services) API documentation! A free API you can use to create PDF invoices (and get some sales dashboards).
+
+## API Call Results
+
 > "Hello world!" invoice definition example.
 
 ```javascript
@@ -58,31 +62,23 @@ var invoice = new Model.Invoice() {
 };
 ```
 
-Welcome to **invoicing.services** API documentation! 
+When you call [invoicing.services](https://invoicing.services) API to create a new Invoice, a PDF document is saved on the Internet and the related URL is returned to you (you can check the next link to get an example).  
 
-You can use this API to create and store invoice PDF files online and get access from anywhere. 
+[https://s3.amazonaws.com/files.invoicing.services.test/c1221534-55ef-495e-a417-8ac03565863e/dummies/2019/04/1ea4a440-b273-4e7b-b3d5-58498c8e4a85.pdf](https://s3.amazonaws.com/files.invoicing.services.test/c1221534-55ef-495e-a417-8ac03565863e/dummies/2019/04/1ea4a440-b273-4e7b-b3d5-58498c8e4a85.pdf). 
 
-<aside class="success">
-To install the .NET SDK, just get the nuget package <strong>invoicing.services.sdk.dotNET</strong>.
+Invoices you create are stored on [Amazon Web Services S3](https://aws.amazon.com/s3/), and each PDF file is coded with a unique GUID (e.g. `7cb0557e-bbd9-4625-84cf-76e7afec9d57`) and will be available for at least five years.
+
+<aside class="warning">
+Others cannot list your invoices on AWS S3 bucket, but anyone with an invoice link can access the file.
 </aside>
 
-When a new invoice is created, you will get a link to your invoice PDF file like:  
+We recommend that you start testing the API by using [Postman](https://www.getpostman.com/) or, if you're using C#, by installing the .NET SDK (install the NuGet package [invoicing.services.sdk.dotNET](https://www.nuget.org/packages/invoicing.services.sdk.dotNET/)). 
 
-[https://s3-us-west-2.amazonaws.com/files.invoicing.services/9bdbd202-b0e1-4d4a-913b-2f9eb1731ce7/dummies/2016/12/7cb0557e-bbd9-4625-84cf-76e7afec9d57.pdf](https://s3-us-west-2.amazonaws.com/files.invoicing.services/9bdbd202-b0e1-4d4a-913b-2f9eb1731ce7/dummies/2016/12/7cb0557e-bbd9-4625-84cf-76e7afec9d57.pdf). 
+You can check for some C# and Javascript code examples included on this page.
 
-Use this link share your invoice.
+## Sales Dashboard
 
-<aside class="notice">
-Invoice files will be available for at least 5 years.
-</aside>
-
-Invoices are stored on [Amazon Web Services S3](https://aws.amazon.com/s3/) and each PDF file is coded with a unique GUID (f.ex. `7cb0557e-bbd9-4625-84cf-76e7afec9d57`). 
-
-The directory where your invoices are stored cannot be listed by other users, but anyone with an invoice link can access the PDF file.
-
-## Dashboard
-
-By using invoicing.service API you will also get some useful sales reports.
+As part of [invoicing.services](https://invoicing.services) service you also get some sales reports.
 
 <aside class="notice">
 Remember to include the countryCode parameter if you want to get sales by country.
@@ -90,11 +86,20 @@ Remember to include the countryCode parameter if you want to get sales by countr
 
 <img src="images/Dashboard.JPG" />
 
-# API endpoint
 
-To call **invoicing.services** API methods, use **https://api.invoicing.services/v2** API endpoint .
+# API Endpoints & Environments
 
-For example, to create a new Invoice, you call the metod `https://api.invoicing.services/v2/invoice/add`.
+[invoicing.services](https://invoicing.services) API uses two environments, a **test** environment you can use to learn and test new API features: 
+
+`https://api.test.invoicing.services/v3/`
+
+and the production environment:
+
+`https://api.invoicing.services/v2`
+
+<aside class="notice">
+To use the test environment, just go to test.invoicing.services and sign in.
+</aside>
 
 # Authentication
 
@@ -117,9 +122,9 @@ $.ajax({
 ```
 
 
-**invoicing.services** uses API keys to allow access to the API methods. You can get an API key at our [website](https://invoicing.services).
+[invoicing.services](https://invoicing.services) API requires a personal **API Key** to authenticate your calls (to get such key, just sign in at [invoicing.services](https://invoicing.services) (or [test.invoicing.services](https://test.invoicing.services)) for free).
 
-We expect for the API key to be included in all API requests to the server in a header that looks like the following:
+Once you get your API Key, you must include it in all of your API calls as a header attribute:
 
 `'X-Api-Key': 'my-api-key'`
 

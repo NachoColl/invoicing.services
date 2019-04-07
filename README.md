@@ -1,22 +1,19 @@
-# invoicing.services
+# invoicing.services API Docs
 
-API documentation. Powered by [slate](https://github.com/lord/slate).
-
-You can browse the docs at [docs.invoicing.services](http://docs.invoicing.services)
+You can browse the docs at [docs.invoicing.services](http://docs.invoicing.services).
 
 ## API Issues
 
 If you have any issue when using the API, please add a new issue here.
 
-Pull requests are welcome for API documentation.
+Pull requests are welcome!
 
+## HOW TO Install Locally
 
-## How to run/build the documentation locally
+API doc is powered by [slate](https://github.com/lord/slate). To run locally, execute:
 
-To run locally:
+```docker-compose up```
 
-`bundle exec middleman server`
+and to build, attach to the container shell, and run:
 
-To get the HTML static files from source, use:
-
-`bundle exec middleman build --clean --build-dir=../docs`
+```bundle exec middleman build --build-dir /usr/src/docs```
